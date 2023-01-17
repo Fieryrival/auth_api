@@ -1,0 +1,33 @@
+GET http://localhost:3000/api/college
+###
+
+GET http://localhost:4000/login
+Content-Type: application/json
+{
+    "username":"user1",
+    "password":"pass1"
+}
+
+GET http://localhost:3000/api/college/107
+
+###
+GET http://localhost:3000/api/college/cluster
+Content-Type: application/json
+
+{
+    "Cluster":"Munger"
+}
+
+###
+PATCH http://localhost:3000/api/college/101
+Content-Type: application/json
+
+{
+    "AC":-1,
+    "Flooring":-1,
+    "UPS":-1
+}
+
+
+###
+DELETE http://localhost:3000/id/160
