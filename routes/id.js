@@ -20,27 +20,19 @@ router.get("/", authenticateToken, async (req, res) => {
 });
 
 // Getting by Cluster
-router.get("/cluster", authenticateToken, getCluster, async (req, res) => {
-  // code here for multi select
-  // console.log()
-  let user_cluster;
-  let ans;
+router.get("/cluster", authenticateToken, async (req, res) => {
+  let cluster;
   try {
-    user_cluster = await admins.find(
-      { username: res.user.username },
-      { Cluster: 1 }
-    );
-    // res.json(user_cluster);
+    cluster = await cl_tlab.find({ Cluster: req.body.Cluster }).then();
+    // console.log(cluster)
+    if (cluster == null) {
+      return res.status(404).json({ message: "Cannot find cluster" });
+    }
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
-  // console.log(user_cluster[0]);
-  // console.log(typeof user_cluster.Cluster);
-  // console.log(typeof(String(req.body.Cluster)))
-  // if (user_cluster[0].Cluster === req.user.Cluster) ans = "yes";
-
-  res.json({ user_cluster, ans });
-  // res.send(res.user.username);
+  // res.cluster = cluster;
+  res.json({ authorized_cluster: req.cluster, cluster });
 });
 
 // Getting one
@@ -62,24 +54,30 @@ router.patch("/", getCollege, async (req, res) => {
 });
 
 // Updating One ...need to use patch bcoz put updates all cols
-router.patch("/:id", authenticateToken, getCollege, async (req, res) => {
-  res.college = res.college.map((college) => {
-    Object.keys(req.body).forEach((key) => {
-      if (req.body[key] !== null && !isNaN(req.body[key])) {
-        college[key] = req.body[key];
-      }
+router.patch(
+  "/:id",
+  authenticateToken,
+  getCollege,
+  authorizeClusterbyId,
+  async (req, res) => {
+    res.college = res.college.map((college) => {
+      Object.keys(req.body).forEach((key) => {
+        if (req.body[key] !== null && !isNaN(req.body[key])) {
+          college[key] = req.body[key];
+        }
+      });
+      return college;
     });
-    return college;
-  });
 
-  try {
-    // const updatedCollege = res.college[0].save();
-    const updatedCollege = await res.college[0].save();
-    res.json(updatedCollege);
-  } catch (err) {
-    res.status(404).send("No");
+    try {
+      // const updatedCollege = res.college[0].save();
+      const updatedCollege = await res.college[0].save();
+      res.json(updatedCollege);
+    } catch (err) {
+      res.status(404).send("No");
+    }
   }
-});
+);
 
 // Deleting One
 router.delete("/:id", getCollege, async (req, res) => {
@@ -107,57 +105,100 @@ async function getCollege(req, res, next) {
   next();
 }
 
-async function getCluster(req, res, next) {
-  let cluster;
-  //   customId = ObjectId(req.params.id)
-  //   let customId = new ObjectId(req.params.id);
+async function authorizeClusterbyId(req, res, next) {
+  let clusterById;
   try {
-    cluster = await cl_tlab.find({ Cluster: req.body.Cluster });
-    // console.log(cluster)
-    if (cluster == null) {
+    clusterById = await cl_tlab.find({ customId: req.params.id }).then();
+
+    if (clusterById == null) {
       return res.status(404).json({ message: "Cannot find cluster" });
+    }
+    if (clusterById[0].Cluster === req.cluster) {
+      res.cluster = clusterById[0].Cluster;
+      next();
+    } else {
+      res.sendStatus(401);
     }
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-  res.cluster = cluster;
-  next();
 }
+
+// async function getClusterbyId(req, res, next) {
+//   let cluster;
+//   //   customId = ObjectId(req.params.id)
+//   //   let customId = new ObjectId(req.params.id);
+//   try {
+//     cluster = await cl_tlab
+//       .find({ Cluster: req.params.id }, { Cluster: 1 })
+//       .then();
+//     // console.log(cluster)
+//     if (cluster == null) {
+//       return res.status(404).json({ message: "Cannot find cluster" });
+//     }
+//   } catch (err) {
+//     return res.status(500).json({ message: err.message });
+//   }
+//   res.cluster = cluster;
+//   next();
+// }
 
 async function updateAccess(req, res, next) {
   //NOTE i think we need to find the cluster according to logged in user and then check with cluster according to id
-  let user_cluster;
+  let admin_cluster;
   try {
-    user_cluster = await cl_tlab.find(
-      { customId: req.params.id },
-      { Cluster: 1 }
-    );
+    admin_cluster = await admins
+      .findOne({ username: res.user.username }, { Cluster: 1 })
+      .exec();
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
   // console.log(user_cluster[0].Cluster);
   // console.log(req.body.Cluster);
-  if (user_cluster[0].Cluster === req.body.Cluster) {
+  if (admin_cluster[0].Cluster === req.body.Cluster) {
     res.cluster = user_cluster[0].Cluster;
     next();
   } else res.sendStatus(401);
 }
 
 // need to implement this on above functions now
+// async function authenticateToken(req, res, next) {
+//   // Bearer TOKEN
+//   const authHeader = req.headers["authorization"];
+//   const token = authHeader && authHeader.split(" ")[1];
+//   if (token == null) return res.sendStatus(401);
+
+//   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+//     if (err) {
+//       return res.sendStatus(403);
+//     }
+//     req.username = user.username;
+//     // console.log(req.username);
+//     next();
+//   });
+// }
+
+// this not only authenticates the user but also finds the cluster for the admin
 async function authenticateToken(req, res, next) {
   // Bearer TOKEN
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) return res.sendStatus(401);
 
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) {
       return res.sendStatus(403);
     }
-    res.user = { username: payload.username, Cluster: payload.Cluster };
-    console.log(payload);
-    // console.log(res.user.Cluster);
-    next();
+    req.username = user.username;
+    admins
+      .findOne({ username: req.username }, { Cluster: 1 })
+      .then((admin) => {
+        req.cluster = admin.Cluster;
+        next();
+      })
+      .catch((err) => {
+        res.status(500).json({ error: "Error finding user in database" });
+      });
   });
 }
 
