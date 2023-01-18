@@ -1,28 +1,34 @@
 GET http://localhost:3000/api/college
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjc0MDA4ODcyfQ.u3YDUp06EIz9kUUrXnIpsoVz5VWwybvi7IHry8HV_Pg
 ###
 
-GET http://localhost:4000/login
+POST http://localhost:4000/auth/login
 Content-Type: application/json
+
 {
     "username":"user1",
     "password":"pass1"
 }
 
+###
 GET http://localhost:3000/api/college/107
 
 ###
 GET http://localhost:3000/api/college/cluster
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjc0MDA4ODcyfQ.u3YDUp06EIz9kUUrXnIpsoVz5VWwybvi7IHry8HV_Pg
 
 {
-    "Cluster":"Munger"
+    "Cluster":"MOTIHARI"
 }
 
 ###
 PATCH http://localhost:3000/api/college/101
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjc0MDA4ODcyfQ.u3YDUp06EIz9kUUrXnIpsoVz5VWwybvi7IHry8HV_Pg
 
 {
+    "Cluster":"MOTIHARI",
     "AC":-1,
     "Flooring":-1,
     "UPS":-1
@@ -30,4 +36,4 @@ Content-Type: application/json
 
 
 ###
-DELETE http://localhost:3000/id/160
+# DELETE http://localhost:3000/id/160

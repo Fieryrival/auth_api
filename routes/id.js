@@ -1,15 +1,16 @@
 const express = require("express");
 const { default: mongoose } = require("mongoose");
 const router = express.Router();
-const jwt=require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
 const request = require("request");
 const cl_tlab = require("../models/cl_tlab");
+const admins = require("../models/admins");
 // const User = require('../models/user')
 // colleges.
 // const ObjectId = mongoose.Types.ObjectId;
 
 // Getting all
-router.get("/",authenticateToken, async (req, res) => {
+router.get("/", authenticateToken, async (req, res) => {
   try {
     const college = await cl_tlab.find().limit(2);
     res.json(college);
@@ -19,13 +20,31 @@ router.get("/",authenticateToken, async (req, res) => {
 });
 
 // Getting by Cluster
-router.get("/cluster", getCluster, (req, res) => {
+router.get("/cluster", authenticateToken, getCluster, async (req, res) => {
   // code here for multi select
-  res.send(res.cluster);
+  // console.log()
+  let user_cluster;
+  let ans;
+  try {
+    user_cluster = await admins.find(
+      { username: res.username },
+      { Cluster: 1 }
+    );
+    // res.json(user_cluster);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+  // console.log(user_cluster[0]);
+  // console.log(typeof user_cluster.Cluster);
+  // console.log(typeof(String(req.body.Cluster)))
+  if (user_cluster[0].Cluster === req.body.Cluster) ans = "yes";
+
+  res.json({ user_cluster, ans });
+  // res.send(res.user.username);
 });
 
 // Getting one
-router.get("/:id", getCollege, (req, res) => {
+router.get("/:id",authenticateToken, getCollege, async (req, res) => {
   const ans = res.college.MCB;
 
   res.send(res.college);
@@ -43,7 +62,7 @@ router.patch("/", getCollege, async (req, res) => {
 });
 
 // Updating One ...need to use patch bcoz put updates all cols
-router.patch("/:id", getCollege, async (req, res) => {
+router.patch("/:id", authenticateToken, getCollege, async (req, res) => {
   res.college = res.college.map((college) => {
     Object.keys(req.body).forEach((key) => {
       if (req.body[key] !== null && !isNaN(req.body[key])) {
@@ -64,12 +83,12 @@ router.patch("/:id", getCollege, async (req, res) => {
 
 // Deleting One
 router.delete("/:id", getCollege, async (req, res) => {
-  try {
-    await res.college.remove();
-    res.json({ message: "College Deleted" });
-  } catch (err) {
-    res.json({ message: "No College found hence not deleted" });
-  }
+  // try {
+  //   await res.college.remove();
+  //   res.json({ message: "College Deleted" });
+  // } catch (err) {
+  //   res.json({ message: "No College found hence not deleted" });
+  // }
 });
 
 async function getCollege(req, res, next) {
@@ -104,6 +123,26 @@ async function getCluster(req, res, next) {
   res.cluster = cluster;
   next();
 }
+
+async function updateAccess(req, res, next) {
+  //NOTE i think we need to find the cluster according to logged in user and then check with cluster according to id
+  let user_cluster;
+  try {
+    user_cluster = await cl_tlab.find(
+      { customId: req.params.id },
+      { Cluster: 1 }
+    );
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+  // console.log(user_cluster[0].Cluster);
+  // console.log(req.body.Cluster);
+  if (user_cluster[0].Cluster === req.body.Cluster) {
+    res.cluster = user_cluster[0].Cluster;
+    next();
+  } else res.sendStatus(401);
+}
+
 // need to implement this on above functions now
 async function authenticateToken(req, res, next) {
   // Bearer TOKEN
@@ -112,8 +151,11 @@ async function authenticateToken(req, res, next) {
   if (token == null) return res.sendStatus(401);
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    if (err) return res.sendStatus(403);
+    if (err) {
+      return res.sendStatus(403);
+    }
     req.user = user;
+    res.username = user.username;
     next();
   });
 }
