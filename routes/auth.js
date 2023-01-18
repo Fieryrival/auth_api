@@ -9,7 +9,6 @@ const User = require("../models/admins");
 router.post("/login", (req, res) => {
   // Extract username and password from request body
   const { username, password } = req.body;
-
   // Find user with matching username
   User.findOne({ username }, (err, user) => {
     if (err) {
@@ -23,9 +22,16 @@ router.post("/login", (req, res) => {
         } else if (!match) {
           res.status(401).json({ error: "Invalid username or password" });
         } else {
-          const token = jwt.sign({ username }, process.env.ACCESS_TOKEN_SECRET);
-          // console.log(process.env.ACCESS_TOKEN_SECRET)
-          res.json({ message: "Login successful", token });
+          User.findOne({ username: username }, { Cluster: 1 })
+            .then((user) => {
+              const payload = { username: username, Cluster: user.Cluster };
+              // console.log(payload)
+              const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
+              res.json({ message: "Login successful", token });
+            })
+            .catch((err) => {
+              res.status(500).json({ error: "Error finding user in database" });
+            });
         }
       });
     }

@@ -27,7 +27,7 @@ router.get("/cluster", authenticateToken, getCluster, async (req, res) => {
   let ans;
   try {
     user_cluster = await admins.find(
-      { username: res.username },
+      { username: res.user.username },
       { Cluster: 1 }
     );
     // res.json(user_cluster);
@@ -37,14 +37,14 @@ router.get("/cluster", authenticateToken, getCluster, async (req, res) => {
   // console.log(user_cluster[0]);
   // console.log(typeof user_cluster.Cluster);
   // console.log(typeof(String(req.body.Cluster)))
-  if (user_cluster[0].Cluster === req.body.Cluster) ans = "yes";
+  // if (user_cluster[0].Cluster === req.user.Cluster) ans = "yes";
 
   res.json({ user_cluster, ans });
   // res.send(res.user.username);
 });
 
 // Getting one
-router.get("/:id",authenticateToken, getCollege, async (req, res) => {
+router.get("/:id", authenticateToken, getCollege, async (req, res) => {
   const ans = res.college.MCB;
 
   res.send(res.college);
@@ -150,12 +150,13 @@ async function authenticateToken(req, res, next) {
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) return res.sendStatus(401);
 
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
     if (err) {
       return res.sendStatus(403);
     }
-    req.user = user;
-    res.username = user.username;
+    res.user = { username: payload.username, Cluster: payload.Cluster };
+    console.log(payload);
+    // console.log(res.user.Cluster);
     next();
   });
 }
