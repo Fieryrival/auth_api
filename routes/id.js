@@ -58,7 +58,6 @@ router.patch(
   "/:id",
   authenticateToken,
   getCollege,
-  authorizeClusterbyId,
   async (req, res) => {
     res.college = res.college.map((college) => {
       Object.keys(req.body).forEach((key) => {

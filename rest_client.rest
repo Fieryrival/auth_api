@@ -1,37 +1,39 @@
 GET http://localhost:3000/api/college
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjc0MDA4ODcyfQ.u3YDUp06EIz9kUUrXnIpsoVz5VWwybvi7IHry8HV_Pg
-###
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIzIiwiaWF0IjoxNjc0MDUwNDg5fQ.MquELS5FZ5i3fz6A1xJDgbl185b7Gliqy0eGZDetYOs
 
+###
 POST http://localhost:4000/auth/login
 Content-Type: application/json
 
 {
-    "username":"user1",
-    "password":"pass1"
+    "username":"user5",
+    "password":"pass5"
 }
 
 ###
-GET http://localhost:3000/api/college/107
+GET http://localhost:3000/api/college/160
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIzIiwiaWF0IjoxNjc0MDUwNDg5fQ.MquELS5FZ5i3fz6A1xJDgbl185b7Gliqy0eGZDetYOs
 
 ###
 GET http://localhost:3000/api/college/cluster
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjc0MDA4ODcyfQ.u3YDUp06EIz9kUUrXnIpsoVz5VWwybvi7IHry8HV_Pg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXI1IiwiaWF0IjoxNjc0MDUwNjk5fQ.808uD5GbuZcHQdXCekYHaLI4lpqTuRcWrsxX_QNRyaI
 
 {
-    "Cluster":"MOTIHARI"
+    "Cluster":"PATNA"
 }
+
 
 ###
 PATCH http://localhost:3000/api/college/101
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjc0MDA4ODcyfQ.u3YDUp06EIz9kUUrXnIpsoVz5VWwybvi7IHry8HV_Pg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXI1IiwiaWF0IjoxNjc0MDUwODE3fQ.oC0FpeSXwcwgo8Yni5KbB5iOhqccfH7-JCb8JW72XC4
 
 {
-    "Cluster":"MOTIHARI",
     "AC":-1,
     "Flooring":-1,
-    "UPS":-1
+    "UPS":-1,
+    "Cleaning":-1
 }
 
 
