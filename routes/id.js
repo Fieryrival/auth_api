@@ -4,6 +4,11 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const request = require("request");
 const cl_tlab = require("../models/cl_tlab");
+const cl_wshop = require("../models/cl_wshop");
+const dy_tlab = require("../models/dy_tlab");
+const dy_wshop = require("../models/dy_wshop");
+const in_tlab = require("../models/in_tlab");
+const in_wshop = require("../models/in_wshop");
 const Forms = require("../models/forms");
 const Users = require("../models/users");
 
@@ -71,6 +76,11 @@ async function getCollege(req, res, next) {
   ).exec();
   const models = {
     cl_tlab: cl_tlab,
+    cl_wshop: cl_wshop,
+    dl_tlab: dy_tlab,
+    dl_wshop: dy_wshop,
+    ins_tlab: in_tlab,
+    ins_wshop: in_wshop,
   };
   const tabl = models[form["formName"]];
   try {
@@ -94,6 +104,11 @@ async function getCluster(req, res, next) {
   ).exec();
   const models = {
     cl_tlab: cl_tlab,
+    cl_wshop: cl_wshop,
+    dl_tlab: dy_tlab,
+    dl_wshop: dy_wshop,
+    ins_tlab: in_tlab,
+    ins_wshop: in_wshop,
   };
   const tabl = models[form["formName"]];
   try {

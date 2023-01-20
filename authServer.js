@@ -4,7 +4,7 @@ const app = express();
 const mongoose = require('mongoose')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const Admin = require("./models/admins");
+// const Admin = require("./models/admins");
 mongoose.set('strictQuery',false);
 
 mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser: true})
