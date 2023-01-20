@@ -14,7 +14,7 @@ app.use(express.json())
 
 const collegeRouter = require('./routes/id')
 // const authRouter = require('./routes/auth')
-app.use('/api/college',collegeRouter)
+app.use('/api/',collegeRouter)
 // app.use('/api/login',authRouter)
 
 app.listen(3000, () => console.log("Server Started"));

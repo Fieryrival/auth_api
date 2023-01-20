@@ -4,7 +4,7 @@ const { default: mongoose } = require("mongoose");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const User = require("../models/admins");
+const User = require("../models/users");
 
 router.post("/login", (req, res) => {
   // Extract username and password from request body
@@ -23,8 +23,14 @@ router.post("/login", (req, res) => {
         } else if (!match) {
           res.status(401).json({ error: "Invalid username or password" });
         } else {
-          const token = jwt.sign({ username }, process.env.ACCESS_TOKEN_SECRET);
+          const payload = { userId: user.userId, username };
+          // console.log(payload);
+          const token = jwt.sign(
+            payload,
+            process.env.ACCESS_TOKEN_SECRET
+          );
           // console.log(process.env.ACCESS_TOKEN_SECRET)
+          // console.log(user.userId)
           res.json({ message: "Login successful", token });
         }
       });
