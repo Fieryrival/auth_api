@@ -11,37 +11,26 @@ POST http://localhost:4000/auth/login
 Content-Type: application/json
 
 {
-    "username":"user1",
-    "password":"pass1"
+    "username":"user2",
+    "password":"pass2"
 }
 
 ###
-GET http://localhost:3000/api/102
-Content-Type: application/json
+GET http://localhost:3000/api/getId/?id=101&form_Id=1001
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDE5OTk1Mn0.1qohmxoLzIWWIvrAjX9-ndFrZG6rS-DdjEuh54Qz7fY
 
-{
-    "form_Id":3001
-}
-
 ###
-GET http://localhost:3000/api/cluster
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDIwMDQ4NH0.Sx0_-ctPFvMy9nRtMjI8agqZpRct5gJNSHt1htsF5Ao
+GET http://localhost:3000/api/getCluster/?form_Id=3002&cluster=Munger
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDE5OTk1Mn0.1qohmxoLzIWWIvrAjX9-ndFrZG6rS-DdjEuh54Qz7fY
 
-{
-    "form_Id" :3001,
-    "Cluster":"PATNA"
-}
 
 
 ###
-PATCH http://localhost:3000/api/102
+PATCH http://localhost:3000/api/update_tmp/?id=110&form_Id=1001
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDIwMDQ4NH0.Sx0_-ctPFvMy9nRtMjI8agqZpRct5gJNSHt1htsF5Ao
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMiwidXNlcm5hbWUiOiJ1c2VyMiIsImlhdCI6MTY3NDQ2MzEzN30.Bsn0HespkCpOQy3QxplYqCVwGpPc_2gdmY9q6uIrgZY
 
 {
-    "form_Id":1001,
     "AC":-1,
     "Flooring":-1,
     "UPS":-1,
@@ -56,5 +45,5 @@ GET http://localhost:3000/api/form
 Content-Type: application/json
 
 {
-    "form_Id":1001
+    "form_Id":1002
 }

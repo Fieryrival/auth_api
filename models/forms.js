@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const formSchema = new mongoose.Schema({
   formName: String,
   formId: Number,
-  formAdmins: Array,
+  formAdmins: [Number],
 });
 
 module.exports = mongoose.model("forms", formSchema);

@@ -1,72 +1,84 @@
 const mongoose = require("mongoose");
 
-const dy_tlabSchema = mongoose.Schema({
+const in_tlabSchema = new mongoose.Schema({
   Cluster: {
-    type: String,
+    type: "String",
   },
   District: {
-    type: String,
+    type: "String",
   },
   ITI_Name: {
-    type: String,
+    type: "String",
   },
   customId: {
-    type: Number,
+    type: "Number",
   },
   Furniture: {
-    type: Number,
+    type: "Number",
   },
   Server_Rack: {
-    type: Number,
+    type: "Number",
   },
   Dell_Workstations: {
-    type: Number,
+    type: "Number",
   },
   Dell_Server: {
-    type: Number,
+    type: "Number",
   },
   VSAT: {
-    type: Number,
+    type: "Number",
   },
   VSAT_Studio: {
-    type: Number,
+    type: "Number",
   },
   IOT_Kit_and_Sensors: {
-    type: Number,
+    type: "Number",
   },
   IOTLab_Laptop: {
-    type: Number,
+    type: "Number",
   },
   D3_Printer_EOS: {
-    type: Number,
+    type: "Number",
   },
   D3_Printer_3DS: {
-    type: Number,
+    type: "Number",
   },
   Laser_Cutter: {
-    type: Number,
+    type: "Number",
   },
   Product_Design_DS: {
-    type: Number,
+    type: "Number",
   },
   POD_CARVELCO: {
-    type: Number,
+    type: "Number",
   },
   PVA_ANSYS: {
-    type: Number,
+    type: "Number",
   },
   PVA_FEAST: {
-    type: Number,
+    type: "Number",
   },
   MASTERCAM: {
-    type: Number,
+    type: "Number",
   },
   IGETIT: {
-    type: Number,
+    type: "Number",
+  },
+  deliverable: {
+    type: "Number",
+  },
+  yts: {
+    type: "Number",
+  },
+  wip: {
+    type: "Number",
+  },
+  completed: {
+    type: "Number",
+  },
+  completed_percentage: {
+    type: "Number",
   },
 });
 
-module.exports = mongoose.model("in_tlab", dy_tlabSchema);
-
-
-// needs editing
+module.exports = mongoose.model('in_tlab',in_tlabSchema);

@@ -1,63 +1,78 @@
 const mongoose = require("mongoose");
 
-const dy_wshopSchema = mongoose.Schema({
+const in_wshopSchema = new mongoose.Schema({
   Cluster: {
-    type: String,
+    type: "String",
   },
   District: {
-    type: String,
+    type: "String",
   },
   ITI_Name: {
-    type: String,
+    type: "String",
   },
   customId: {
-    type: Number,
+    type: "Number",
   },
   Ind_Paint_Booth: {
-    type: Number,
+    type: "Number",
   },
   Car_Lift: {
-    type: Number,
+    type: "Number",
   },
   IPC_AVEVA: {
-    type: Number,
+    type: "Number",
   },
   VR_welding_Painting: {
-    type: Number,
+    type: "Number",
   },
   Auto_MRO_Cut_Sections: {
-    type: Number,
+    type: "Number",
   },
   TIGOR_EV: {
-    type: Number,
+    type: "Number",
   },
   TATA_Ace: {
-    type: Number,
+    type: "Number",
   },
   EV_Kit: {
-    type: Number,
+    type: "Number",
   },
   Industrial_Robotics: {
-    type: Number,
+    type: "Number",
   },
   VFD: {
-    type: Number,
+    type: "Number",
   },
   Plumbing_Kit: {
-    type: Number,
+    type: "Number",
   },
   CNC_Tsugami: {
-    type: Number,
+    type: "Number",
   },
   VMC_HAAS: {
-    type: Number,
+    type: "Number",
   },
   HAAS_Tools_Meters: {
-    type: Number,
+    type: "Number",
   },
   HAAS_Simulators: {
-    type: Number,
+    type: "Number",
+  },
+  deliverable: {
+    type: "Number",
+  },
+  yts: {
+    type: "Number",
+  },
+  wip: {
+    type: "Number",
+  },
+  completed: {
+    type: "Number",
+  },
+  completed_percentage: {
+    type: "Number",
   },
 });
 
-module.exports = mongoose.model("in_wshop", dy_wshopSchema);
+module.exports = mongoose.model("in_wshop", in_wshopSchema);
