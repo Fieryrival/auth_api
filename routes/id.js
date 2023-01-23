@@ -2,7 +2,6 @@ const express = require("express");
 const { default: mongoose, Model } = require("mongoose");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const request = require("request");
 const cl_tlab = require("../models/cl_tlab");
 const cl_wshop = require("../models/cl_wshop");
 const dy_tlab = require("../models/dy_tlab");
@@ -12,15 +11,130 @@ const in_wshop = require("../models/in_wshop");
 const Forms = require("../models/forms");
 const Users = require("../models/users");
 
-router.get("/wipByForm", authenticateToken, async (req, res) => {
+
+router.get("/dataDashboard", authenticateToken, getForm, async (req, res) => {
   //
+  const data = await res.tabl
+    .find({}, { wip: 1, completed_percentage: 1, completed: 1, yts: 1 })
+    .then();
+  let wip = 0;
+  let cpl = 0;
+  let yts = 0;
+  let tot=0;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i]._doc["completed"] === 0 && data[i]._doc["wip"] === 0) {
+      yts++;
+    } else if (data[i]._doc["wip"] >= 0) wip++;
+    else cpl++;
+    tot++;
+  }
+  res.json({tot, wip, cpl, yts });
 });
-router.get("/yts", authenticateToken, async (req, res) => {
+
+
+router.get("/test", getUniqueCluster, getReadiness, async (req, res) => {
+  let results = {};
+  res.send(res.cluster_data);
+});
+
+
+async function getUniqueCluster(req, res, next) {
+  let clusters = [];
+  try {
+    clusters = await cl_tlab.distinct("Cluster").then();
+  } catch (err) {
+    res.status(500).send("Error fetching distinct Clusters");
+    return;
+  }
+  res.clist = clusters;
+  next();
+}
+
+async function getReadiness(req, res, next) {
   //
-});
-router.get("/completed", authenticateToken, async (req, res) => {
-  //
-});
+  const colls = {
+    1000: [cl_tlab, cl_wshop],
+    2000: [dy_tlab, dy_wshop],
+    3000: [in_tlab, in_wshop],
+  };
+  const c1 = colls[req.query.formCode][0];
+  const c2 = colls[req.query.formCode][1];
+  // console.log(colls[1000][0]);
+  // let models = colls[req.query.formCode];
+  const sizes = {
+    1000: [15, 16],
+    2000: [17, 15],
+    3000: [17, 15],
+  };
+  const s1 = sizes[req.query.formCode][0];
+  const s2 = sizes[req.query.formCode][1];
+  // console.log(s1, s2);
+  // let answer1;
+  let tech_overall = 0;
+  let wks_overall = 0;
+  let tech_actual = 0;
+  let wks_actual = 0;
+  let final_ans = [];
+  for (let clu in res.clist) {
+    let tmp = { Cluster: res.clist[clu] };
+    let answer1 = await c1
+      .aggregate([
+        { $match: { Cluster: res.clist[clu] } },
+        {
+          $group: {
+            _id: null,
+            completed: { $sum: "$completed" },
+            Tot: { $sum: 1 },
+          },
+        },
+      ])
+      .then();
+    let answer2 = await c2
+      .aggregate([
+        { $match: { Cluster: res.clist[clu] } },
+        {
+          $group: {
+            _id: null,
+            completed: { $sum: "$completed" },
+            Tot: { $sum: 1 },
+          },
+        },
+      ])
+      .then();
+    let tech_tot = answer1[0]["Tot"] * s1;
+    tech_overall += tech_tot;
+    let wks_tot = answer2[0]["Tot"] * s2;
+    wks_overall += wks_tot;
+    let tech_done = answer1[0]["completed"];
+    tech_actual += tech_done;
+    let wks_done = answer2[0]["completed"];
+    wks_actual += wks_done;
+
+    tmp["completed"] = {
+      tech: Math.ceil((tech_done / tech_tot) * 100),
+      wks: Math.ceil((wks_done / wks_tot) * 100),
+      tech_tot: tech_tot,
+      wks_tot: wks_tot,
+    };
+    // console.log(answer);
+    final_ans.push(tmp);
+  }
+  let stats = {
+    tech_actual : tech_actual,
+  wks_actual : wks_actual,
+  tech_overall : tech_overall,
+  wks_overall : wks_overall,
+  // cluster_data : final_ans,
+  }
+  res.tech_actual = tech_actual;
+  res.wks_actual = wks_actual;
+  res.tech_overall = tech_overall;
+  res.wks_overall = wks_overall;
+  res.cluster_data = [final_ans,stats];
+
+  next();
+}
+
 router.get("/wip", authenticateToken, async (req, res) => {});
 router.get("/yts", authenticateToken, async (req, res) => {});
 router.get("/completed", authenticateToken, async (req, res) => {});
@@ -57,9 +171,15 @@ router.get(
   }
 );
 
-router.get("/getId", authenticateToken,getForm, getCollege, async (req, res) => {
-  res.send(res.college);
-});
+router.get(
+  "/getId",
+  authenticateToken,
+  getForm,
+  getCollege,
+  async (req, res) => {
+    res.send(res.college);
+  }
+);
 
 router.patch("/", getCollege, async (req, res) => {
   // some code here for updating multiple colleges by id
@@ -161,6 +281,7 @@ async function updateStats(req, res, next) {
   res.college[0].completed = completed;
   res.college[0].wip = wip;
   res.college[0].yts = yts;
+  res.college[0].completed_percentage = Math.ceil((completed / res.sz) * 100);
   const final_update = await res.college[0].save();
   res.college[0] = final_update;
   next();
@@ -265,8 +386,18 @@ async function getForm(req, res, next) {
     ins_tlab: in_tlab,
     ins_wshop: in_wshop,
   };
+  const sizes = {
+    cl_tlab: 15,
+    cl_wshop: 16,
+    dl_tlab: 17,
+    dl_wshop: 15,
+    ins_tlab: 17,
+    ins_wshop: 15,
+  };
   const tabl = models[form["formName"]];
   // const
+  res.sz = sizes[form["formName"]];
+  // console.log(res.sz);
   res.admins = form["formAdmins"];
   res.tabl = tabl;
   next();

@@ -1,10 +1,11 @@
-GET http://localhost:3000/api/
+GET http://localhost:3000/api/dataDashboard/?form_Id=2002
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDIxNjUyNn0.8R5r_aXyKSvnAnodU8fKqJnlsrMchhb4NM-AtMh7EKI
 
-{
-    "form_Id":3002
-}
+###
+GET http://localhost:3000/api/test/?formCode=3000
+
+
 
 ###
 POST http://localhost:4000/auth/login
@@ -16,24 +17,24 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/getId/?id=101&form_Id=1001
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDE5OTk1Mn0.1qohmxoLzIWWIvrAjX9-ndFrZG6rS-DdjEuh54Qz7fY
+GET http://localhost:3000/api/getId/?id=103&form_Id=1002
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDQ4NTI3M30.Xj1TxwK3kZZiEJ2WNJuFr3bksE_lH0qFGWM_V_7MeSw
 
 ###
-GET http://localhost:3000/api/getCluster/?form_Id=3002&cluster=Munger
+GET http://localhost:3000/api/getCluster/?form_Id=1001&cluster=Munger
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDE5OTk1Mn0.1qohmxoLzIWWIvrAjX9-ndFrZG6rS-DdjEuh54Qz7fY
 
 
 
 ###
-PATCH http://localhost:3000/api/update_tmp/?id=110&form_Id=1001
+PATCH http://localhost:3000/api/update_tmp/?id=101&form_Id=2002
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMiwidXNlcm5hbWUiOiJ1c2VyMiIsImlhdCI6MTY3NDQ2MzEzN30.Bsn0HespkCpOQy3QxplYqCVwGpPc_2gdmY9q6uIrgZY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMiwidXNlcm5hbWUiOiJ1c2VyMiIsImlhdCI6MTY3NDQ5NjMwOH0.-tqQKYMNGrd6ePX1SMlMeSdsDGkjtZjsRXlyUKjp1oI
 
 {
-    "AC":-1,
-    "Flooring":-1,
-    "UPS":-1,
+    "VFD":1,
+    "TIGOR_EV":-1,
+    "Car_Lift":1,
     "Cleaning":-1
 }
 
