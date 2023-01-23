@@ -17,4 +17,7 @@ const collegeRouter = require('./routes/id')
 app.use('/api/',collegeRouter)
 // app.use('/api/login',authRouter)
 
+const cors = require('cors');
+app.use(cors());
+
 app.listen(3000, () => console.log("Server Started"));
