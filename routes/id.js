@@ -11,7 +11,6 @@ const in_wshop = require("../models/in_wshop");
 const Forms = require("../models/forms");
 const Users = require("../models/users");
 
-
 router.get("/dataDashboard", authenticateToken, getForm, async (req, res) => {
   //
   const data = await res.tabl
@@ -20,23 +19,22 @@ router.get("/dataDashboard", authenticateToken, getForm, async (req, res) => {
   let wip = 0;
   let cpl = 0;
   let yts = 0;
-  let tot=0;
+  let tot = 0;
   for (let i = 0; i < data.length; i++) {
     if (data[i]._doc["completed"] === 0 && data[i]._doc["wip"] === 0) {
       yts++;
-    } else if (data[i]._doc["wip"] >= 0) wip++;
-    else cpl++;
+    } else if (data[i]._doc["wip"] >= 0 && data[i]._doc["deliverable"] !== 1)
+      wip++;
+    else cpl++; //this is still not correct
     tot++;
   }
-  res.json({tot, wip, cpl, yts });
+  res.json({ tot, wip, cpl, yts });
 });
-
 
 router.get("/test", getUniqueCluster, getReadiness, async (req, res) => {
   let results = {};
   res.send(res.cluster_data);
 });
-
 
 async function getUniqueCluster(req, res, next) {
   let clusters = [];
@@ -120,17 +118,17 @@ async function getReadiness(req, res, next) {
     final_ans.push(tmp);
   }
   let stats = {
-    tech_actual : tech_actual,
-  wks_actual : wks_actual,
-  tech_overall : tech_overall,
-  wks_overall : wks_overall,
-  // cluster_data : final_ans,
-  }
+    tech_actual: tech_actual,
+    wks_actual: wks_actual,
+    tech_overall: tech_overall,
+    wks_overall: wks_overall,
+    // cluster_data : final_ans,
+  };
   res.tech_actual = tech_actual;
   res.wks_actual = wks_actual;
   res.tech_overall = tech_overall;
   res.wks_overall = wks_overall;
-  res.cluster_data = [final_ans,stats];
+  res.cluster_data = [final_ans, stats];
 
   next();
 }
@@ -282,6 +280,7 @@ async function updateStats(req, res, next) {
   res.college[0].wip = wip;
   res.college[0].yts = yts;
   res.college[0].completed_percentage = Math.ceil((completed / res.sz) * 100);
+  if (completed === res.sz) res.college[0].deliverable = 1;
   const final_update = await res.college[0].save();
   res.college[0] = final_update;
   next();
