@@ -11,7 +11,8 @@ const in_wshop = require("../models/in_wshop");
 const Forms = require("../models/forms");
 const Users = require("../models/users");
 
-router.get("/dataDashboard", authenticateToken, getForm, async (req, res) => {
+
+router.get("/dataDashboard",authenticateToken, getForm, async (req, res) => {
   //
   const data = await res.tabl
     .find({}, { wip: 1, completed_percentage: 1, completed: 1, yts: 1 })
@@ -25,13 +26,13 @@ router.get("/dataDashboard", authenticateToken, getForm, async (req, res) => {
       yts++;
     } else if (data[i]._doc["wip"] >= 0 && data[i]._doc["deliverable"] !== 1)
       wip++;
-    else cpl++; //this is still not correct
+    else cpl++; 
     tot++;
   }
   res.json({ tot, wip, cpl, yts });
 });
 
-router.get("/test", getUniqueCluster, getReadiness, async (req, res) => {
+router.get("/test",authenticateToken, getUniqueCluster, getReadiness, async (req, res) => {
   let results = {};
   res.send(res.cluster_data);
 });
@@ -136,9 +137,6 @@ async function getReadiness(req, res, next) {
 router.get("/wip", authenticateToken, async (req, res) => {});
 router.get("/yts", authenticateToken, async (req, res) => {});
 router.get("/completed", authenticateToken, async (req, res) => {});
-
-// 3 functions for cluster based data
-// form_id passed as param/query
 
 router.get("/form", async (req, res) => {
   const form = await Forms.findOne({ formId: req.body.form_Id });

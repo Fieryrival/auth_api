@@ -1,10 +1,10 @@
 GET http://localhost:3000/api/dataDashboard/?form_Id=1001
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDIxNjUyNn0.8R5r_aXyKSvnAnodU8fKqJnlsrMchhb4NM-AtMh7EKI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDU5Mzg5MiwiZXhwIjoxNjc0NTkzOTAyfQ.pFoUigtsYxHQOxEiTA7NW8uj1xLTSZAubXvCil4cJxQ
 
 ###
-GET http://localhost:3000/api/test/?formCode=3000
-
+GET http://localhost:3000/api/test/?formCode=1000
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDU2NTY0MSwiZXhwIjoxNjc0NTY5MjQxfQ.lvbf9rHprVe0Z8XTY0HTbmg_luSibVaYEZ-d-0xk80Q
 
 
 ###
@@ -12,29 +12,40 @@ POST http://localhost:4000/auth/login
 Content-Type: application/json
 
 {
-    "username":"user2",
-    "password":"pass2"
+    "username":"user1",
+    "password":"pass1"
 }
 
 ###
-GET http://localhost:3000/api/getId/?id=103&form_Id=1002
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDQ4NTI3M30.Xj1TxwK3kZZiEJ2WNJuFr3bksE_lH0qFGWM_V_7MeSw
+GET http://localhost:3000/api/getId/?id=130&form_Id=1001
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDcyMjE3MywiZXhwIjoxNjc0NzI1NzczfQ.y5afjZtxJvS6t4QhZa6kEQ7Fvz31ACpU4474FcQijXg
 
 ###
-GET http://localhost:3000/api/getCluster/?form_Id=1001&cluster=Munger
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDE5OTk1Mn0.1qohmxoLzIWWIvrAjX9-ndFrZG6rS-DdjEuh54Qz7fY
+GET http://localhost:3000/api/getCluster/?form_Id=1001&cluster=PATNA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDU2NTY0MSwiZXhwIjoxNjc0NTY5MjQxfQ.lvbf9rHprVe0Z8XTY0HTbmg_luSibVaYEZ-d-0xk80Q
 
 
 ###
-PATCH http://localhost:3000/api/update_tmp/?id=101&form_Id=2002
+PATCH http://localhost:3000/api/update_tmp/?id=130&form_Id=1001
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMiwidXNlcm5hbWUiOiJ1c2VyMiIsImlhdCI6MTY3NDQ5NjMwOH0.-tqQKYMNGrd6ePX1SMlMeSdsDGkjtZjsRXlyUKjp1oI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDcyMjE3MywiZXhwIjoxNjc0NzI1NzczfQ.y5afjZtxJvS6t4QhZa6kEQ7Fvz31ACpU4474FcQijXg
 
 {
-    "VFD":1,
-    "TIGOR_EV":-1,
-    "Car_Lift":1,
-    "Cleaning":-1
+    "Basic_Infra": 1,
+    "Flooring": 1,
+    "False_Ceiling": 1,
+    "Internal_Painting": 1,
+    "Windows": 1,
+    "Doors": 1,
+    "Aluminium_Partition": 1,
+    "AC": 1,
+    "MCB": 1,
+    "Networking": 1,
+    "LT_Pannel": 1,
+    "Electric_Supply": 1,
+    "UPS": 1,
+    "External_Painting": 1,
+    "Cleaning": 1
 }
 
 

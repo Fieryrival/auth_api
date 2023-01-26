@@ -27,7 +27,7 @@ router.post("/login", (req, res) => {
           // console.log(payload);
           const token = jwt.sign(
             payload,
-            process.env.ACCESS_TOKEN_SECRET
+            process.env.ACCESS_TOKEN_SECRET,{ expiresIn: 60*60 }
           );
           // console.log(process.env.ACCESS_TOKEN_SECRET)
           // console.log(user.userId)
