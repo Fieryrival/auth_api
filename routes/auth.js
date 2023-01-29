@@ -27,7 +27,7 @@ router.post("/login", (req, res) => {
           // console.log(payload);
           const token = jwt.sign(
             payload,
-            process.env.ACCESS_TOKEN_SECRET,{ expiresIn: 60*60 }
+            process.env.ACCESS_TOKEN_SECRET,{algorithm: "HS256", expiresIn: 60*60 }
           );
           // console.log(process.env.ACCESS_TOKEN_SECRET)
           // console.log(user.userId)
@@ -36,6 +36,28 @@ router.post("/login", (req, res) => {
       });
     }
   });
+});
+
+router.post('/register', async (req, res) => {
+  try {
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    // Find the number of users in the table
+    const count = await User.countDocuments();
+    // Assign the userId
+    const userId = 100 + count + 1;
+    // Create the new user
+    const user = new User({
+      username: req.body.username,
+      password: hashedPassword,
+      userId: userId
+    });
+    // Save the user to the database
+    await user.save();
+    res.status(201).json({ message: 'User created successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'Error creating user', error: err });
+  }
 });
 
 module.exports = router;

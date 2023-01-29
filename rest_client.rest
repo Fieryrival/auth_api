@@ -1,10 +1,10 @@
 GET http://localhost:3000/api/dataDashboard/?form_Id=1001
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDU5Mzg5MiwiZXhwIjoxNjc0NTkzOTAyfQ.pFoUigtsYxHQOxEiTA7NW8uj1xLTSZAubXvCil4cJxQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDg5MTk4NCwiZXhwIjoxNjc0ODk1NTg0fQ.hCaaUHE2MBpsq4CSOprA_SMZVxm05_ug8nut64d7MK4
 
 ###
 GET http://localhost:3000/api/test/?formCode=1000
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDU2NTY0MSwiZXhwIjoxNjc0NTY5MjQxfQ.lvbf9rHprVe0Z8XTY0HTbmg_luSibVaYEZ-d-0xk80Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDg5MTk4NCwiZXhwIjoxNjc0ODk1NTg0fQ.hCaaUHE2MBpsq4CSOprA_SMZVxm05_ug8nut64d7MK4
 
 
 ###
@@ -18,20 +18,20 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/api/getId/?id=130&form_Id=1001
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDcyMjE3MywiZXhwIjoxNjc0NzI1NzczfQ.y5afjZtxJvS6t4QhZa6kEQ7Fvz31ACpU4474FcQijXg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDg5MTk4NCwiZXhwIjoxNjc0ODk1NTg0fQ.hCaaUHE2MBpsq4CSOprA_SMZVxm05_ug8nut64d7MK4
 
 ###
 GET http://localhost:3000/api/getCluster/?form_Id=1001&cluster=PATNA
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDU2NTY0MSwiZXhwIjoxNjc0NTY5MjQxfQ.lvbf9rHprVe0Z8XTY0HTbmg_luSibVaYEZ-d-0xk80Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDg5MTk4NCwiZXhwIjoxNjc0ODk1NTg0fQ.hCaaUHE2MBpsq4CSOprA_SMZVxm05_ug8nut64d7MK4
 
 
 ###
 PATCH http://localhost:3000/api/update_tmp/?id=130&form_Id=1001
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDcyMjE3MywiZXhwIjoxNjc0NzI1NzczfQ.y5afjZtxJvS6t4QhZa6kEQ7Fvz31ACpU4474FcQijXg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDg5MTk4NCwiZXhwIjoxNjc0ODk1NTg0fQ.hCaaUHE2MBpsq4CSOprA_SMZVxm05_ug8nut64d7MK4
 
 {
-    "Basic_Infra": 1,
+    "Basic_Infra": 0,
     "Flooring": 1,
     "False_Ceiling": 1,
     "Internal_Painting": 1,
@@ -58,3 +58,17 @@ Content-Type: application/json
 {
     "form_Id":1002
 }
+
+
+###
+POST http://localhost:3000/note/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDk5ODM5MiwiZXhwIjoxNjc1MDAxOTkyfQ.EeyH3Esaj-IC0UgX2vfILIWB_NJiddKwWaCHNhwrZUI
+
+{
+    "title":"seventh Note added",
+    "content":"seven"
+}
+
+###
+GET http://localhost:3000/note/

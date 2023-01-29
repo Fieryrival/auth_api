@@ -2,6 +2,8 @@ require('dotenv').config()
 // const cors = require('cors');
 const express = require("express");
 const app = express();
+const cors = require('cors');
+app.use(cors());
 const mongoose = require('mongoose')
 mongoose.set('strictQuery',false);
 
@@ -16,8 +18,7 @@ const collegeRouter = require('./routes/id')
 // const authRouter = require('./routes/auth')
 app.use('/api/',collegeRouter)
 // app.use('/api/login',authRouter)
-
-const cors = require('cors');
-app.use(cors());
+const noteRouter = require('./routes/note')
+app.use('/note/',noteRouter)
 
 app.listen(3000, () => console.log("Server Started"));
