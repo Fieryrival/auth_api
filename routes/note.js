@@ -6,8 +6,8 @@ const { authenticateToken } = require("../middlewares/middleware");
 // Create a new note
 router.post("/", authenticateToken, async (req, res) => {
   const { title, content } = req.body;
-  const username = res.username;
-  const userId = res.userId;
+  const username = req.username;
+  const userId = req.userId;
   let numOfDocs =await Note.countDocuments().then();
   const noteId = Number(numOfDocs+101);
   const newNote = new Note({ title, content, username, userId,noteId });
@@ -33,6 +33,12 @@ router.get("/", async (req, res) => {
   //     res.status(500).json(err);
   //   });
   const notes = await Note.find().sort({noteId:-1});
+  res.send({ notes });
+});
+
+router.get("/latest", async (req, res) => {
+  // GET top 3 recently added Notes
+  const notes = await Note.find().sort({noteId:-1}).limit(3);
   res.send({ notes });
 });
 

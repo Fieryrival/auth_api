@@ -66,9 +66,12 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDk5ODM5MiwiZXhwIjoxNjc1MDAxOTkyfQ.EeyH3Esaj-IC0UgX2vfILIWB_NJiddKwWaCHNhwrZUI
 
 {
-    "title":"seventh Note added",
-    "content":"seven"
+    "title":"fifth Note added",
+    "content":"five"
 }
 
 ###
 GET http://localhost:3000/note/
+
+###
+GET http://127.0.0.1:3000/note/latest
