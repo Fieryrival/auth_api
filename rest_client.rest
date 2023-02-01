@@ -1,10 +1,10 @@
 GET http://localhost:3000/api/dataDashboard/?form_Id=1001
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDg5MTk4NCwiZXhwIjoxNjc0ODk1NTg0fQ.hCaaUHE2MBpsq4CSOprA_SMZVxm05_ug8nut64d7MK4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTIzMjA5MiwiZXhwIjoxNjc1MjM1NjkyfQ.YiE71xcuNUUEPqgMYkxHz3gaR152rc2YJQcCQF7_04g
 
 ###
 GET http://localhost:3000/api/test/?formCode=1000
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDg5MTk4NCwiZXhwIjoxNjc0ODk1NTg0fQ.hCaaUHE2MBpsq4CSOprA_SMZVxm05_ug8nut64d7MK4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTIzMjA5MiwiZXhwIjoxNjc1MjM1NjkyfQ.YiE71xcuNUUEPqgMYkxHz3gaR152rc2YJQcCQF7_04g
 
 
 ###
@@ -18,17 +18,17 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/api/getId/?id=130&form_Id=1001
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDg5MTk4NCwiZXhwIjoxNjc0ODk1NTg0fQ.hCaaUHE2MBpsq4CSOprA_SMZVxm05_ug8nut64d7MK4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTIzMjA5MiwiZXhwIjoxNjc1MjM1NjkyfQ.YiE71xcuNUUEPqgMYkxHz3gaR152rc2YJQcCQF7_04g
 
 ###
 GET http://localhost:3000/api/getCluster/?form_Id=1001&cluster=PATNA
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDg5MTk4NCwiZXhwIjoxNjc0ODk1NTg0fQ.hCaaUHE2MBpsq4CSOprA_SMZVxm05_ug8nut64d7MK4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTIzMjA5MiwiZXhwIjoxNjc1MjM1NjkyfQ.YiE71xcuNUUEPqgMYkxHz3gaR152rc2YJQcCQF7_04g
 
 
 ###
 PATCH http://localhost:3000/api/update_tmp/?id=130&form_Id=1001
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDg5MTk4NCwiZXhwIjoxNjc0ODk1NTg0fQ.hCaaUHE2MBpsq4CSOprA_SMZVxm05_ug8nut64d7MK4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTIzMjA5MiwiZXhwIjoxNjc1MjM1NjkyfQ.YiE71xcuNUUEPqgMYkxHz3gaR152rc2YJQcCQF7_04g
 
 {
     "Basic_Infra": 0,
@@ -52,26 +52,75 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwid
 ###
 # DELETE http://localhost:3000/id/160
 
-GET http://localhost:3000/api/form
+
+###
+POST http://localhost:3000/note/addNote
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTI0Mjc5NCwiZXhwIjoxNjc1MjQ2Mzk0fQ.8kk72HUSxBIDcQ_QR9QMlFFtI3JtXTbvnG21beRErxM
 
 {
-    "form_Id":1002
+    "title":"seventh Note added",
+    "content":"seven"
 }
 
 
-###
-POST http://localhost:3000/note/
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDk5ODM5MiwiZXhwIjoxNjc1MDAxOTkyfQ.EeyH3Esaj-IC0UgX2vfILIWB_NJiddKwWaCHNhwrZUI
 
-{
-    "title":"fifth Note added",
-    "content":"five"
-}
 
+
+# note.js REQUESTS
 ###
-GET http://localhost:3000/note/
+GET http://localhost:3000/note/allNotes
 
 ###
 GET http://127.0.0.1:3000/note/latest
+
+###
+POST http://localhost:3000/note/deleteNote
+Content-Type: application/json
+
+{
+    "note_Id":106
+}
+
+
+
+
+
+
+
+
+
+# admn.js REQUESTS
+
+###
+GET http://localhost:3000/updateAdmin/users
+
+###
+GET http://localhost:3000/updateAdmin/forms
+
+
+###
+POST http://localhost:3000/updateAdmin/addAdmin
+Content-Type: application/json
+
+{
+    "formName":"cl_tlab",
+    "admins":["user1"]
+}
+
+###
+POST http://localhost:3000/updateAdmin/register
+Content-Type: application/json
+
+{
+    "username":"user12",
+    "password":"pass1"
+}
+
+###
+POST http://localhost:3000/updateAdmin/deleteUser
+Content-Type: application/json
+
+{
+    "username":"user12"
+}

@@ -1,5 +1,29 @@
 const jwt = require("jsonwebtoken");
 
+const cl_tlab = require("../models/cl_tlab");
+const cl_wshop = require("../models/cl_wshop");
+const dy_tlab = require("../models/dy_tlab");
+const dy_wshop = require("../models/dy_wshop");
+const in_tlab = require("../models/in_tlab");
+const in_wshop = require("../models/in_wshop");
+const Forms = require("../models/forms");
+const Users = require("../models/users");
+
+async function getCollege(req, res, next) {
+  let college;
+  try {
+    college = await res.tabl.find({ customId: req.query.id });
+
+    if (college == null) {
+      return res.status(404).json({ message: "Cannot find subscriber" });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+  res.college = college;
+  next();
+}
+
 const authenticateToken = async (req, res, next) => {
   // Bearer TOKEN
   const authHeader = req.headers["authorization"];
@@ -30,6 +54,7 @@ async function authorizeUpdate(req, res, next) {
       break;
     }
   }
+  if (req.userId === 100 && req.username === "master_admin") authorized = true;
   if (authorized) {
     next();
   } else {
@@ -201,10 +226,53 @@ async function updateStats(req, res, next) {
   next();
 }
 
+async function getForm(req, res, next) {
+  const form = await Forms.findOne(
+    { formId: req.query.form_Id },
+    { formName: 1, formAdmins: 1 }
+  ).exec();
+  const models = {
+    cl_tlab: cl_tlab,
+    cl_wshop: cl_wshop,
+    dl_tlab: dy_tlab,
+    dl_wshop: dy_wshop,
+    ins_tlab: in_tlab,
+    ins_wshop: in_wshop,
+  };
+  const sizes = {
+    cl_tlab: 15,
+    cl_wshop: 16,
+    dl_tlab: 17,
+    dl_wshop: 15,
+    ins_tlab: 17,
+    ins_wshop: 15,
+  };
+  const tabl = models[form["formName"]];
+  res.sz = sizes[form["formName"]];
+  res.admins = form["formAdmins"];
+  res.tabl = tabl;
+  next();
+}
+
+async function getUniqueCluster(req, res, next) {
+  let clusters = [];
+  try {
+    clusters = await cl_tlab.distinct("Cluster").then();
+  } catch (err) {
+    res.status(500).send("Error fetching distinct Clusters");
+    return;
+  }
+  res.clist = clusters;
+  next();
+}
+
 module.exports = {
   authenticateToken,
   getCluster,
   authorizeUpdate,
   getReadiness,
   updateStats,
+  getForm,
+  getUniqueCluster,
+  getCollege,
 };
