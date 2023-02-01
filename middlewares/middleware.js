@@ -256,8 +256,8 @@ async function logChanges(req, res, next) {
   const changeId = (await latestUpdate.countDocuments().then()) + 1;
   let spec;
   let formNo = req.query.form_Id;
-  if (formNo % 2 === 0) spec = "techlab";
-  else spec = "workshop";
+  if (formNo % 2 === 0) spec = "workshop";
+  else spec = "techlab";
   let desc;
   if (res.changes["completed"] === 1) desc = "this got completed";
   // console.log(res.changes);
@@ -301,6 +301,7 @@ async function getForm(req, res, next) {
     ins_tlab: 17,
     ins_wshop: 15,
   };
+  res.formName=form["formName"];
   const tabl = models[form["formName"]];
   res.sz = sizes[form["formName"]];
   res.admins = form["formAdmins"];
