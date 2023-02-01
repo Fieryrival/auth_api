@@ -7,7 +7,8 @@ const dy_wshop = require("../models/dy_wshop");
 const in_tlab = require("../models/in_tlab");
 const in_wshop = require("../models/in_wshop");
 const Forms = require("../models/forms");
-const Users = require("../models/users");
+// const Users = require("../models/users");
+const latestUpdate = require("../models/latestUpdate");
 
 async function getCollege(req, res, next) {
   let college;
@@ -157,15 +158,27 @@ async function getReadiness(req, res, next) {
 
 async function updateStats(req, res, next) {
   // console.log(typeof res.college[0])
+  // const originalDoc = res.college[0];
+  let originalDoc = res.college[0];
+  const changes = {};
+  let status = "incpl";
   res.college = res.college.map((college) => {
     Object.keys(req.body).forEach((key) => {
       // console.log(key)
       if (req.body[key] !== null && !isNaN(req.body[key])) {
+        if (req.body[key] !== college[key]) {
+          let tmp_status;
+          if (req.body[key] === 1) tmp_status = "cpl";
+          if (req.body[key] === 0) tmp_status = "wip";
+          if (req.body[key] === -1) tmp_status = "yts";
+          changes[key] = [college[key], req.body[key], String(tmp_status)];
+        }
         college[key] = req.body[key];
       }
     });
     return college;
   });
+  // console.log(changes);
   const updatedCollege = await res.college[0].save();
   // res.json(updatedCollege);
   // res.college[0] = updatedCollege;
@@ -220,9 +233,50 @@ async function updateStats(req, res, next) {
   res.college[0].wip = wip;
   res.college[0].yts = yts;
   res.college[0].completed_percentage = Math.ceil((completed / res.sz) * 100);
-  if (completed === res.sz) res.college[0].deliverable = 1;
+  if (completed === res.sz) {
+    res.college[0].deliverable = 1;
+    // changes["completed"] = 1;
+    res.status = "cpl";
+  } else {
+    res.status = "incpl";
+  }
   const final_update = await res.college[0].save();
+  // console.log(final_update);
+  // console.log(originalDoc);
+  // above two documents are changed after update operation so cant log changes from there
+
+  res.changes = changes;
   res.college[0] = final_update;
+  next();
+}
+
+async function logChanges(req, res, next) {
+  let excludedKeys = ["__v", "_id"];
+  // console.log(res.changes);
+  const changeId = (await latestUpdate.countDocuments().then()) + 1;
+  let spec;
+  let formNo = req.query.form_Id;
+  if (formNo % 2 === 0) spec = "techlab";
+  else spec = "workshop";
+  let desc;
+  if (res.changes["completed"] === 1) desc = "this got completed";
+  // console.log(res.changes);
+  // for (let k in res.changes) {
+  //   console.log(k, res.changes[k][2]);
+  // }
+  const newUpdate = new latestUpdate({
+    userId: req.userId,
+    userName: req.username,
+    changeId: changeId,
+    collegeName: res.college[0]._doc["ITI_Name"],
+    spec: spec,
+    formName: res.formName,
+    status: res.status,
+    formId: formNo,
+    changes: res.changes,
+    description: desc,
+  });
+  await newUpdate.save();
   next();
 }
 
@@ -266,6 +320,34 @@ async function getUniqueCluster(req, res, next) {
   next();
 }
 
+const deleteOldLogs = async (req, res, next) => {
+  try {
+    // Get the current date
+    const currentDate = new Date();
+
+    // Get the start and end of the current day
+    const startOfDay = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      currentDate.getDate()
+    );
+    const endOfDay = new Date(startOfDay.getTime() + 24 * 60 * 60 * 1000 - 1);
+
+    // Delete logs that are not from the current day
+    await latestUpdate.deleteMany({
+      dateUpdate: {
+        $lt: startOfDay,
+        $gt: endOfDay,
+      },
+    });
+
+    next();
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error deleting old logs.");
+  }
+};
+
 module.exports = {
   authenticateToken,
   getCluster,
@@ -275,4 +357,5 @@ module.exports = {
   getForm,
   getUniqueCluster,
   getCollege,
+  logChanges,
 };

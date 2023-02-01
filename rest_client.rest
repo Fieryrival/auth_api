@@ -28,26 +28,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwid
 ###
 PATCH http://localhost:3000/api/update_tmp/?id=130&form_Id=1001
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTIzMjA5MiwiZXhwIjoxNjc1MjM1NjkyfQ.YiE71xcuNUUEPqgMYkxHz3gaR152rc2YJQcCQF7_04g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTI1MTk3OCwiZXhwIjoxNjc1MjU1NTc4fQ.lQ3igRt8u83ZtJK3XtUdd9NA_Wsp_UbMPQPa6et2ow8
 
 {
-    "Basic_Infra": 0,
-    "Flooring": 1,
-    "False_Ceiling": 1,
-    "Internal_Painting": 1,
-    "Windows": 1,
-    "Doors": 1,
-    "Aluminium_Partition": 1,
-    "AC": 1,
-    "MCB": 1,
-    "Networking": 1,
-    "LT_Pannel": 1,
-    "Electric_Supply": 1,
-    "UPS": 1,
-    "External_Painting": 1,
-    "Cleaning": 1
+    "Basic_Infra": 1,
+    "Flooring": 0
 }
 
+###
+GET http://localhost:3000/api/lastChanges
+
+###
+GET http://localhost:3000/api/deleteAllLogs
 
 ###
 # DELETE http://localhost:3000/id/160
@@ -72,14 +64,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwid
 GET http://localhost:3000/note/allNotes
 
 ###
-GET http://127.0.0.1:3000/note/latest
+GET http://127.0.0.1:3000/note/latestNotes
 
 ###
 POST http://localhost:3000/note/deleteNote
 Content-Type: application/json
 
 {
-    "note_Id":106
+    "note_Id":103
 }
 
 

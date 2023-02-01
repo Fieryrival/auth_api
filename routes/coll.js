@@ -10,6 +10,7 @@ const in_tlab = require("../models/in_tlab");
 const in_wshop = require("../models/in_wshop");
 const Forms = require("../models/forms");
 const Users = require("../models/users");
+const latestUpdate = require("../models/latestUpdate");
 
 const {
   getCluster,
@@ -20,7 +21,9 @@ const {
   getForm,
   getUniqueCluster,
   getCollege,
+  logChanges,
 } = require("../middlewares/middleware");
+// const latestUpdate = require("../models/latestUpdate");
 
 router.get("/dataDashboard", authenticateToken, getForm, async (req, res) => {
   const data = await res.tabl
@@ -55,8 +58,6 @@ router.get(
   }
 );
 
-
-
 // Getting all
 router.get("/", authenticateToken, async (req, res) => {
   try {
@@ -87,24 +88,23 @@ router.get(
   }
 );
 
-
-router.patch("/update", authenticateToken, getCollege, async (req, res) => {
-  res.college = res.college.map((college) => {
-    Object.keys(req.body).forEach((key) => {
-      // console.log(key)
-      if (req.body[key] !== null && !isNaN(req.body[key])) {
-        college[key] = req.body[key];
-      }
-    });
-    return college;
-  });
-  try {
-    const updatedCollege = await res.college[0].save();
-    res.json(updatedCollege);
-  } catch (err) {
-    res.status(404).send("Error In Updating");
-  }
-});
+// router.patch("/update", authenticateToken, getCollege, async (req, res) => {
+//   res.college = res.college.map((college) => {
+//     Object.keys(req.body).forEach((key) => {
+//       // console.log(key)
+//       if (req.body[key] !== null && !isNaN(req.body[key])) {
+//         college[key] = req.body[key];
+//       }
+//     });
+//     return college;
+//   });
+//   try {
+//     const updatedCollege = await res.college[0].save();
+//     res.json(updatedCollege);
+//   } catch (err) {
+//     res.status(404).send("Error In Updating");
+//   }
+// });
 
 router.patch(
   "/update_tmp",
@@ -113,14 +113,31 @@ router.patch(
   authorizeUpdate,
   getCollege,
   updateStats,
+  logChanges,
   async (req, res) => {
     res.json(res.college);
   }
 );
 
+router.get("/lastChanges", async (req, res) => {
+  let tmp_changes;
+  try {
+    const tmp_changes = await latestUpdate.find().then();
+    res.send({ tmp_changes });
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+router.get("/deleteAllLogs", async (req, res) => {
+  try {
+    const deletedLogs = await latestUpdate.deleteMany().then();
+    res.send(deletedLogs);
+  } catch (err) {
+    res.send(err);
+  }
+});
 // Deleting One or resetting all values to -1
-router.delete("/:id", getCollege, async (req, res) => {});
-
-
+// router.delete("/", getCollege, async (req, res) => {});
 
 module.exports = router;
