@@ -270,7 +270,7 @@ async function logChanges(req, res, next) {
     changeId: changeId,
     collegeName: res.college[0]._doc["ITI_Name"],
     spec: spec,
-    formName: res.formName,
+    formName: res.tabl,
     status: res.status,
     formId: formNo,
     changes: res.changes,
