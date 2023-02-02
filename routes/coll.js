@@ -124,7 +124,7 @@ router.get("/lastChanges", async (req, res) => {
   try {
     const tmp_changes = await latestUpdate.find().sort({ changeId: -1 }).then();
     // let year = tmp_changes[0]._doc["dateUpdate"].getFullYear();
-    
+
     // console.log(hours + ":" + minutes);
     res.send({ tmp_changes });
   } catch (err) {
@@ -142,5 +142,19 @@ router.get("/deleteAllLogs", async (req, res) => {
 });
 // Deleting One or resetting all values to -1
 // router.delete("/", getCollege, async (req, res) => {});
+
+router.get("/editableForms", authenticateToken, async (req, res) => {
+  let allowedForms;
+  let userId = req.userId;
+  try {
+    allowedForms = await Forms.find(
+      { formAdmins: { $in: [userId] } },
+      { formId: 1, formName: 1 }
+    ).then();
+    res.send(allowedForms);
+  } catch (err) {
+    res.send({ err: "Error finding edit authorized forms" });
+  }
+});
 
 module.exports = router;
