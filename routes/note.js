@@ -5,9 +5,10 @@ const { authenticateToken } = require("../middlewares/middleware");
 
 // Create a new note
 router.post("/addNote", authenticateToken, async (req, res) => {
-  const { title, content } = req.body;
+  const { title, content, designation } = req.body;
   const username = req.username;
   const userId = req.userId;
+  // const designation = req.body.designation;
   let noteId = 0;
   let numOfDocs = await Note.countDocuments().then();
   if (numOfDocs !== 0) {
@@ -20,7 +21,14 @@ router.post("/addNote", authenticateToken, async (req, res) => {
     noteId = Number(numOfDocs + 101);
   }
 
-  const newNote = new Note({ title, content, username, userId, noteId });
+  const newNote = new Note({
+    title,
+    content,
+    username,
+    userId,
+    noteId,
+    designation,
+  });
   newNote
     .save()
     .then((note) => {

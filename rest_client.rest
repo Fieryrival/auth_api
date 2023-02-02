@@ -50,18 +50,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwid
 ###
 POST http://localhost:3000/note/addNote
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTI0Mjc5NCwiZXhwIjoxNjc1MjQ2Mzk0fQ.8kk72HUSxBIDcQ_QR9QMlFFtI3JtXTbvnG21beRErxM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTM1ODA1NCwiZXhwIjoxNjc1MzYxNjU0fQ.Ks95lhWTHkhlgghe3N2mi_sfc3_lsehGjuXT5_vTU9A
 
 {
     "title":"seventh Note added",
-    "content":"seven"
+    "content":"seven",
+    "designation":"director"
 }
 
 
 # note.js REQUESTS
 ###
 GET http://localhost:3000/note/allNotes
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTI1MTk3OCwiZXhwIjoxNjc1MjU1NTc4fQ.lQ3igRt8u83ZtJK3XtUdd9NA_Wsp_UbMPQPa6et2ow8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTM1ODA1NCwiZXhwIjoxNjc1MzYxNjU0fQ.Ks95lhWTHkhlgghe3N2mi_sfc3_lsehGjuXT5_vTU9A
 ###
 GET http://127.0.0.1:3000/note/latestNotes
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTI1MTk3OCwiZXhwIjoxNjc1MjU1NTc4fQ.lQ3igRt8u83ZtJK3XtUdd9NA_Wsp_UbMPQPa6et2ow8
