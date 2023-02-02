@@ -122,7 +122,10 @@ router.patch(
 router.get("/lastChanges", async (req, res) => {
   let tmp_changes;
   try {
-    const tmp_changes = await latestUpdate.find().then();
+    const tmp_changes = await latestUpdate.find().sort({ changeId: -1 }).then();
+    // let year = tmp_changes[0]._doc["dateUpdate"].getFullYear();
+    
+    // console.log(hours + ":" + minutes);
     res.send({ tmp_changes });
   } catch (err) {
     res.send(err);

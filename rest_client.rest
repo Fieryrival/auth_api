@@ -28,7 +28,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwid
 ###
 PATCH http://localhost:3000/api/update_tmp/?id=130&form_Id=1001
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTI2NzA2OCwiZXhwIjoxNjc1MjcwNjY4fQ.upoagVWQfUoXL8u3nv6WMfvsTlcgsU-8MqpyZyDMWis
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTMxNTExMiwiZXhwIjoxNjc1MzE4NzEyfQ.Xl3QbikQ42c-lIpa4fJa0t6i5hBd4hDyB-dAP-Pv5To
 
 {
     "Basic_Infra": -1,
@@ -38,6 +38,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwid
 ###
 GET http://localhost:3000/api/lastChanges
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTI2NzA2OCwiZXhwIjoxNjc1MjcwNjY4fQ.upoagVWQfUoXL8u3nv6WMfvsTlcgsU-8MqpyZyDMWis
+
 ###
 GET http://localhost:3000/api/deleteAllLogs
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTI1MTk3OCwiZXhwIjoxNjc1MjU1NTc4fQ.lQ3igRt8u83ZtJK3XtUdd9NA_Wsp_UbMPQPa6et2ow8
