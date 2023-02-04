@@ -7,6 +7,7 @@ const uploadSchema = new mongoose.Schema({
   caption: String,
   fileId: Number,
   fileName: String,
+  fileUrl:String,
   createdAt: { type: Date, default: Date.now() },
   timeUpdate: {
     type: String,
