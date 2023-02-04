@@ -1,10 +1,10 @@
 GET http://localhost:3000/api/dataDashboard/?form_Id=1001
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDU5Mzg5MiwiZXhwIjoxNjc0NTkzOTAyfQ.pFoUigtsYxHQOxEiTA7NW8uj1xLTSZAubXvCil4cJxQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTIzMjA5MiwiZXhwIjoxNjc1MjM1NjkyfQ.YiE71xcuNUUEPqgMYkxHz3gaR152rc2YJQcCQF7_04g
 
 ###
 GET http://localhost:3000/api/test/?formCode=1000
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDU2NTY0MSwiZXhwIjoxNjc0NTY5MjQxfQ.lvbf9rHprVe0Z8XTY0HTbmg_luSibVaYEZ-d-0xk80Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTIzMjA5MiwiZXhwIjoxNjc1MjM1NjkyfQ.YiE71xcuNUUEPqgMYkxHz3gaR152rc2YJQcCQF7_04g
 
 
 ###
@@ -18,43 +18,107 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/api/getId/?id=130&form_Id=1001
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDcyMjE3MywiZXhwIjoxNjc0NzI1NzczfQ.y5afjZtxJvS6t4QhZa6kEQ7Fvz31ACpU4474FcQijXg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTIzMjA5MiwiZXhwIjoxNjc1MjM1NjkyfQ.YiE71xcuNUUEPqgMYkxHz3gaR152rc2YJQcCQF7_04g
 
 ###
 GET http://localhost:3000/api/getCluster/?form_Id=1001&cluster=PATNA
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDU2NTY0MSwiZXhwIjoxNjc0NTY5MjQxfQ.lvbf9rHprVe0Z8XTY0HTbmg_luSibVaYEZ-d-0xk80Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTIzMjA5MiwiZXhwIjoxNjc1MjM1NjkyfQ.YiE71xcuNUUEPqgMYkxHz3gaR152rc2YJQcCQF7_04g
 
 
 ###
 PATCH http://localhost:3000/api/update_tmp/?id=130&form_Id=1001
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NDcyMjE3MywiZXhwIjoxNjc0NzI1NzczfQ.y5afjZtxJvS6t4QhZa6kEQ7Fvz31ACpU4474FcQijXg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTMxNTExMiwiZXhwIjoxNjc1MzE4NzEyfQ.Xl3QbikQ42c-lIpa4fJa0t6i5hBd4hDyB-dAP-Pv5To
 
 {
-    "Basic_Infra": 1,
-    "Flooring": 1,
-    "False_Ceiling": 1,
-    "Internal_Painting": 1,
-    "Windows": 1,
-    "Doors": 1,
-    "Aluminium_Partition": 1,
-    "AC": 1,
-    "MCB": 1,
-    "Networking": 1,
-    "LT_Pannel": 1,
-    "Electric_Supply": 1,
-    "UPS": 1,
-    "External_Painting": 1,
-    "Cleaning": 1
+    "Basic_Infra": -1,
+    "Flooring": 0
 }
 
+###
+GET http://localhost:3000/api/lastChanges
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTI2NzA2OCwiZXhwIjoxNjc1MjcwNjY4fQ.upoagVWQfUoXL8u3nv6WMfvsTlcgsU-8MqpyZyDMWis
+
+###
+GET http://localhost:3000/api/deleteAllLogs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTI1MTk3OCwiZXhwIjoxNjc1MjU1NTc4fQ.lQ3igRt8u83ZtJK3XtUdd9NA_Wsp_UbMPQPa6et2ow8
 
 ###
 # DELETE http://localhost:3000/id/160
 
-GET http://localhost:3000/api/form
+
+###
+POST http://localhost:3000/note/addNote
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTM1ODA1NCwiZXhwIjoxNjc1MzYxNjU0fQ.Ks95lhWTHkhlgghe3N2mi_sfc3_lsehGjuXT5_vTU9A
+
+{
+    "title":"seventh Note added",
+    "content":"seven",
+    "designation":"director"
+}
+
+
+# note.js REQUESTS
+###
+GET http://localhost:3000/note/allNotes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTM1ODA1NCwiZXhwIjoxNjc1MzYxNjU0fQ.Ks95lhWTHkhlgghe3N2mi_sfc3_lsehGjuXT5_vTU9A
+###
+GET http://127.0.0.1:3000/note/latestNotes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTI1MTk3OCwiZXhwIjoxNjc1MjU1NTc4fQ.lQ3igRt8u83ZtJK3XtUdd9NA_Wsp_UbMPQPa6et2ow8
+###
+POST http://localhost:3000/note/deleteNote
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTI1MTk3OCwiZXhwIjoxNjc1MjU1NTc4fQ.lQ3igRt8u83ZtJK3XtUdd9NA_Wsp_UbMPQPa6et2ow8
+
+{
+    "note_Id":103
+}
+
+
+
+
+
+
+
+
+
+# admn.js REQUESTS
+
+###
+GET http://localhost:3000/updateAdmin/users
+
+###
+GET http://localhost:3000/updateAdmin/forms
+
+
+###
+POST http://localhost:3000/updateAdmin/addAdmin
 Content-Type: application/json
 
 {
-    "form_Id":1002
+    "formName":"cl_tlab",
+    "admins":["user1"]
 }
+
+###
+POST http://localhost:3000/updateAdmin/register
+Content-Type: application/json
+
+{
+    "username":"user12",
+    "password":"pass1"
+}
+
+###
+POST http://localhost:3000/updateAdmin/deleteUser
+Content-Type: application/json
+
+{
+    "username":"user12"
+}
+
+
+###
+GET http://localhost:3000/api/editableForms
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTMyMDk3NSwiZXhwIjoxNjc1MzI0NTc1fQ.OeNL5dfbEcWCDB6moFMG8t-ylilrSwlH5iX4wx1zsD0
