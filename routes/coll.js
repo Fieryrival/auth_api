@@ -95,7 +95,6 @@ router.patch(
   authorizeUpdate,
   getCollege,
   updateStats,
-  logChanges,
   async (req, res) => {
     res.json(res.college);
   }
