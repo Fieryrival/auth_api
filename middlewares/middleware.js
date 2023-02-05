@@ -239,6 +239,7 @@ async function updateStats(req, res, next) {
     res.status = "cpl";
   } else {
     res.status = "incpl";
+    res.college[0].deliverable = 0;
   }
   const final_update = await res.college[0].save();
   // console.log(final_update);
