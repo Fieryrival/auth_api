@@ -88,24 +88,6 @@ router.get(
   }
 );
 
-// router.patch("/update", authenticateToken, getCollege, async (req, res) => {
-//   res.college = res.college.map((college) => {
-//     Object.keys(req.body).forEach((key) => {
-//       // console.log(key)
-//       if (req.body[key] !== null && !isNaN(req.body[key])) {
-//         college[key] = req.body[key];
-//       }
-//     });
-//     return college;
-//   });
-//   try {
-//     const updatedCollege = await res.college[0].save();
-//     res.json(updatedCollege);
-//   } catch (err) {
-//     res.status(404).send("Error In Updating");
-//   }
-// });
-
 router.patch(
   "/update_tmp",
   authenticateToken,
@@ -113,13 +95,12 @@ router.patch(
   authorizeUpdate,
   getCollege,
   updateStats,
-  logChanges,
   async (req, res) => {
     res.json(res.college);
   }
 );
 
-router.get("/lastChanges", async (req, res) => {
+router.get("/lastChanges",authenticateToken, async (req, res) => {
   let tmp_changes;
   try {
     const tmp_changes = await latestUpdate.find().sort({ changeId: -1 }).then();
@@ -132,7 +113,7 @@ router.get("/lastChanges", async (req, res) => {
   }
 });
 
-router.get("/deleteAllLogs", async (req, res) => {
+router.get("/deleteAllLogs",authenticateToken, async (req, res) => {
   try {
     const deletedLogs = await latestUpdate.deleteMany().then();
     res.send(deletedLogs);

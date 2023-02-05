@@ -13,16 +13,9 @@ db.on('error',(error)=> console.error(error))
 db.once('open',()=>console.log('Connected to Database'))
 app.use(express.json());
 
-// app.post("/login", (req, res) => {
-//   // Authentication
-//   const username = req.body.username;
-//   const user = { name: username };
-//   const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-//   res.json({ accesstToken: accessToken });
-// });
 const authRouter=require('./routes/auth')
 app.use('/auth',authRouter)
 
 
 
-app.listen(4000);
+app.listen(4000, () => console.log("Auth Server Started"));

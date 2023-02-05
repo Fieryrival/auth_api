@@ -3,14 +3,17 @@ const router = express.Router();
 const path = require("path");
 const multer = require("multer");
 const upload_datas = require("../models/upload_data");
+const { authenticateToken } = require("../middlewares/middleware");
+const cloudinary = require("cloudinary").v2;
 
 const parent_folder = "/home/noob/Documents/INTERN_FILES/API/images/";
-const fs = require("fs");
 
+const fs = require("fs");
 function deleteImage(filePath) {
   fs.unlink(filePath, (err) => {
     if (err) {
       console.error(err);
+      res.status(500).send({ message: "Error deleting image file" });
     }
   });
 }
@@ -32,36 +35,39 @@ router.get("/allImages", async (req, res) => {
   let imgData;
   try {
     imgData = await upload_datas.find({}, {}).then();
-    res.send(imgData);
+    res.status(200).send(imgData);
   } catch (err) {
-    res.send({ err: "error getting imgData" });
+    res.status(500).send({ err: "error getting imgData" });
   }
 });
 
 router.post(
   "/upload",
+  authenticateToken,
   upload.single("image"),
   setImageData,
   async (req, res) => {
-    //   const uploader = req.body.username;
-    res.send("Image Uploaded successfully" + res.imgData);
+    const imgData = res.imgData;
+    res.status(200).send({ message: "Image Uploaded Successfully", imgData });
   }
 );
 
-router.post("/delete", getImageData, async (req, res) => {
+router.post("/delete", authenticateToken, getImageData, async (req, res) => {
   //
   //   deleteImage("/home/noob/Documents/INTERN_FILES/API/images/1675491706440.jpg");
+  if (res.imgData[0] === null)
+    res.send({ err: "no such file with given fileId" });
   const full_path = parent_folder + res.imgData[0]._doc["fileName"];
-//   console.log(full_path);
+  //   console.log(full_path);
   deleteImage(full_path);
   let deletedImgData;
   try {
     deletedImgData = await upload_datas
       .findOneAndDelete({ fileId: req.body.fileId })
       .then();
-    res.send(deletedImgData);
+    res.status(200).send(deletedImgData);
   } catch (err) {
-    res.send({err:"error getting imgData"});
+    res.status(500).send({ err: "error getting imgData" });
   }
 });
 
@@ -109,7 +115,7 @@ async function getImageData(req, res, next) {
       .exec();
     res.imgData = imgData;
   } catch (err) {
-    res.send({ err: "error getting imgData" });
+    res.status(500).send({ err: "error getting imgData" });
   }
   next();
 }

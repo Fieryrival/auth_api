@@ -5,13 +5,18 @@ const app = express();
 const cors = require("cors");
 app.use(cors());
 const mongoose = require("mongoose");
+// const fileUpload = require("express-fileupload");
 mongoose.set("strictQuery", false);
 
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.on("error", (error) => console.error(error));
 db.once("open", () => console.log("Connected to Database"));
-
+// app.use(
+//   fileUpload({
+//     useTempFiles: true,
+//   })
+// );
 app.use(express.json());
 
 const collegeRouter = require("./routes/coll");
@@ -20,8 +25,14 @@ app.use("/api/", collegeRouter);
 // app.use('/api/login',authRouter)
 const noteRouter = require("./routes/note");
 app.use("/note/", noteRouter);
-const imgRouter = require("./routes/img_up");
-app.use("/img/", imgRouter);
+
+// localStorage
+// const imgRouter = require("./routes/img_up");
+// app.use("/img/", imgRouter);
+
+// cloudinaryRouter
+const cloudinaryRouter = require("./routes/imgUp");
+app.use("/cloudImg/", cloudinaryRouter);
 
 // IMPORTANT : THIS BLOCK SHOULD BE REMOVED IN PRODUCTION AND ONLY BE USED BY BACKEND PURPOSES
 const updateAdminRouter = require("./routes/admn");
