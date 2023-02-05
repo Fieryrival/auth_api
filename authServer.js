@@ -6,7 +6,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 // const Admin = require("./models/admins");
 mongoose.set('strictQuery',false);
-
+const cors = require("cors");
+app.use(cors());
 mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser: true})
 const db = mongoose.connection
 db.on('error',(error)=> console.error(error))

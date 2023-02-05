@@ -27,7 +27,7 @@ router.post("/login", (req, res) => {
           // console.log(payload);
           const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
             algorithm: "HS256",
-            expiresIn: 60 * 60,
+            expiresIn: 60 * 60 * 24,
           });
           // console.log(process.env.ACCESS_TOKEN_SECRET)
           // console.log(user.userId)
@@ -37,6 +37,5 @@ router.post("/login", (req, res) => {
     }
   });
 });
-
 
 module.exports = router;
