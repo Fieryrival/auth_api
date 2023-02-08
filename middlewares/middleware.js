@@ -14,7 +14,7 @@ async function masterAdmin(req, res, next) {
   if (req.username === "master_admin" && req.userId === 100) {
     next();
   } else {
-    res.status(401).send("Unauthorised Request");
+    return res.sendStatus(403);
   }
 }
 
