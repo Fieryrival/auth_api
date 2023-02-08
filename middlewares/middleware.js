@@ -10,6 +10,14 @@ const Forms = require("../models/forms");
 // const Users = require("../models/users");
 const latestUpdate = require("../models/latestUpdate");
 
+async function masterAdmin(req, res, next) {
+  if (req.username === "master_admin" && req.userId === 100) {
+    next();
+  } else {
+    res.status(401).send("Unauthorised Request");
+  }
+}
+
 async function getCollege(req, res, next) {
   let college;
   try {
@@ -302,7 +310,7 @@ async function getForm(req, res, next) {
     ins_tlab: 17,
     ins_wshop: 15,
   };
-  res.formName=form["formName"];
+  res.formName = form["formName"];
   const tabl = models[form["formName"]];
   res.sz = sizes[form["formName"]];
   res.admins = form["formAdmins"];
@@ -360,4 +368,5 @@ module.exports = {
   getUniqueCluster,
   getCollege,
   logChanges,
+  masterAdmin,
 };

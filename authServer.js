@@ -12,9 +12,9 @@ app.use(cors());
 
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
-  useFindAndModify: true,
+  // useFindAndModify: true,
   useUnifiedTopology: true,
-  useCreateIndex: true,
+  // useCreateIndex: true,
 });
 const db = mongoose.connection;
 

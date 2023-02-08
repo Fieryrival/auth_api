@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Note = require("../models/notes"); // import the note model
-const { authenticateToken } = require("../middlewares/middleware");
+const { authenticateToken, masterAdmin } = require("../middlewares/middleware");
 
 // Create a new note
 router.post("/addNote", authenticateToken, async (req, res) => {
@@ -41,7 +41,7 @@ router.post("/addNote", authenticateToken, async (req, res) => {
 });
 
 // Get all notes
-router.get("/allNotes",authenticateToken, async (req, res) => {
+router.get("/allNotes", authenticateToken, async (req, res) => {
   let notes;
   try {
     notes = await Note.find().sort({ noteId: -1 }).then();
@@ -51,7 +51,7 @@ router.get("/allNotes",authenticateToken, async (req, res) => {
   }
 });
 
-router.get("/latestNotes",authenticateToken, async (req, res) => {
+router.get("/latestNotes", authenticateToken, async (req, res) => {
   // GET top 3 recently added Notes
   let notes;
   try {
@@ -62,7 +62,7 @@ router.get("/latestNotes",authenticateToken, async (req, res) => {
   }
 });
 
-router.post("/deleteNote",authenticateToken, async (req, res) => {
+router.post("/deleteNote", authenticateToken, masterAdmin, async (req, res) => {
   try {
     const deletedNote = await Note.findOneAndDelete({
       noteId: req.body.note_Id,
