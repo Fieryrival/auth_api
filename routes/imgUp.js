@@ -52,7 +52,7 @@ router.get("/allImages", authenticateToken, async (req, res) => {
   let imgData;
   try {
     imgData = await upload_datas.find({}, {}).sort({ fileId: -1 }).then();
-    res.status(302).send(imgData);
+    res.status(200).send(imgData);
   } catch (err) {
     res.status(500).send({ err: "error getting imgData" });
   }
@@ -65,7 +65,7 @@ router.get("/clusterImg", authenticateToken, async (req, res) => {
       .find({ siteName: req.query.cluster })
       .sort({ fileId: -1 })
       .then();
-    res.status(302).send(imgData);
+    res.status(200).send(imgData);
   } catch (err) {
     res.status(500).send({ err: "error getting imgData" });
   }

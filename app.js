@@ -29,10 +29,10 @@ app.use(authenticateToken);
 
 const collegeRouter = require("./routes/coll");
 // const authRouter = require('./routes/auth')
-app.use("/api/", collegeRouter);
+app.use("/api/college/", collegeRouter);
 // app.use('/api/login',authRouter)
 const noteRouter = require("./routes/note");
-app.use("/note/", noteRouter);
+app.use("/api/note/", noteRouter);
 
 // localStorage
 // const imgRouter = require("./routes/img_up");
@@ -40,7 +40,7 @@ app.use("/note/", noteRouter);
 
 // cloudinaryRouter
 const cloudinaryRouter = require("./routes/imgUp");
-app.use("/cloudImg/", cloudinaryRouter);
+app.use("/api/cloudImg/", cloudinaryRouter);
 
 // IMPORTANT : THIS BLOCK SHOULD BE REMOVED IN PRODUCTION AND ONLY BE USED BY BACKEND PURPOSES
 // const updateAdminRouter = require("./routes/admn");
