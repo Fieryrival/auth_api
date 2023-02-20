@@ -7,8 +7,8 @@ const jwt = require("jsonwebtoken");
 
 mongoose.set("strictQuery", false);
 
-const cors = require("cors");
-app.use(cors());
+// const cors = require("cors");
+// app.use(cors());
 
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
