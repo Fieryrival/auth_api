@@ -96,8 +96,8 @@ async function getReadiness(req, res, next) {
   const c2 = colls[req.query.formCode][1];
   const sizes = {
     1000: [15, 16],
-    2000: [17, 15],
-    3000: [17, 15],
+    2000: [15, 16],
+    3000: [15, 16],
   };
   const s1 = sizes[req.query.formCode][0];
   const s2 = sizes[req.query.formCode][1];
@@ -305,10 +305,10 @@ async function getForm(req, res, next) {
   const sizes = {
     cl_tlab: 15,
     cl_wshop: 16,
-    dl_tlab: 17,
-    dl_wshop: 15,
-    ins_tlab: 17,
-    ins_wshop: 15,
+    dl_tlab: 15,
+    dl_wshop: 16,
+    ins_tlab: 15,
+    ins_wshop: 16,
   };
   res.formName = form["formName"];
   const tabl = models[form["formName"]];
