@@ -26,13 +26,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwid
 
 
 ###
-PATCH http://localhost:3000/api/update_tmp/?id=130&form_Id=1001
+PATCH http://localhost:3000/api/update_tmp/?id=130&form_Id=2001
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTMxNTExMiwiZXhwIjoxNjc1MzE4NzEyfQ.Xl3QbikQ42c-lIpa4fJa0t6i5hBd4hDyB-dAP-Pv5To
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlcm5hbWUiOiJtYXN0ZXJfYWRtaW4iLCJpYXQiOjE2NzY5NjQzMzgsImV4cCI6MTY3NzA1MDczOH0.r-wqAR76awZuvTGzSQ6PQ5fOhdPa0SuwYEBi064mnE8
 
 {
-    "Basic_Infra": -1,
-    "Flooring": 0
+    "IOT_Kit": 1
 }
 
 ###

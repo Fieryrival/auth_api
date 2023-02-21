@@ -11,6 +11,7 @@ const noteSchema = new mongoose.Schema({
     type: Date,
     default: new Date(),
   },
+  wasChanged: { type: String, default: "NO" },
   timeUpdate: {
     type: String,
     default: () => {

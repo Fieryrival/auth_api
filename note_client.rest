@@ -1,0 +1,36 @@
+###
+GET http://localhost:3000/note/getNoteById
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlcm5hbWUiOiJtYXN0ZXJfYWRtaW4iLCJpYXQiOjE2NzY5NjQzMzgsImV4cCI6MTY3NzA1MDczOH0.r-wqAR76awZuvTGzSQ6PQ5fOhdPa0SuwYEBi064mnE8
+
+###
+POST http://localhost:3000/note/addNote
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlcm5hbWUiOiJtYXN0ZXJfYWRtaW4iLCJpYXQiOjE2NzY5NjQzMzgsImV4cCI6MTY3NzA1MDczOH0.r-wqAR76awZuvTGzSQ6PQ5fOhdPa0SuwYEBi064mnE8
+
+{
+    "title":"title 3",
+    "content":"content 3",
+    "designation":"design 3"
+}
+
+
+###
+POST http://localhost:3000/note/updateNote?noteId=137
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlcm5hbWUiOiJtYXN0ZXJfYWRtaW4iLCJpYXQiOjE2NzY5NjQzMzgsImV4cCI6MTY3NzA1MDczOH0.r-wqAR76awZuvTGzSQ6PQ5fOhdPa0SuwYEBi064mnE8
+
+{
+    "title":"note_number_137",
+    "content":"this is a sample text i added after adding timestamp for updates"
+}
+
+
+
+###
+POST http://localhost:3000/note/deleteNote
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlcm5hbWUiOiJtYXN0ZXJfYWRtaW4iLCJpYXQiOjE2NzY5NjQzMzgsImV4cCI6MTY3NzA1MDczOH0.r-wqAR76awZuvTGzSQ6PQ5fOhdPa0SuwYEBi064mnE8
+
+{
+    "note_Id":136
+}
