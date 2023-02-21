@@ -19,49 +19,43 @@ const dy_tlabSchema = new mongoose.Schema({
   Server_Rack: {
     type: "Number",
   },
-  Dell_Workstations: {
+  Workstations_and_Monitors: {
     type: "Number",
   },
-  Dell_Server: {
+  Server: {
     type: "Number",
   },
-  VSAT: {
+  Distance_Learning_Classroom: {
     type: "Number",
   },
-  VSAT_Studio: {
+  IOT_Kit: {
     type: "Number",
   },
-  IOT_Kit_and_Sensors: {
+  IOT_Desktops: {
     type: "Number",
   },
-  IOTLab_Laptop: {
+  D3_Printer_Tech1: {
     type: "Number",
   },
-  D3_Printer_EOS: {
+  D3_Printer_Tech2: {
     type: "Number",
   },
-  D3_Printer_3DS: {
+  Tech_Tools_Product_Design1: {
     type: "Number",
   },
-  Laser_Cutter: {
+  Tech_Tools_Product_Design2: {
     type: "Number",
   },
-  Product_Design_DS: {
+  Tech_Tools_Product_Verification1: {
     type: "Number",
   },
-  POD_CARVELCO: {
+  Tech_Tools_Product_Verification2: {
     type: "Number",
   },
-  PVA_ANSYS: {
+  Tech_Tools_Advance_Manufacturing1: {
     type: "Number",
   },
-  PVA_FEAST: {
-    type: "Number",
-  },
-  MASTERCAM: {
-    type: "Number",
-  },
-  IGETIT: {
+  E_Learning_Platform: {
     type: "Number",
   },
   deliverable: {
@@ -81,4 +75,4 @@ const dy_tlabSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('dy_tlab',dy_tlabSchema);
+module.exports = mongoose.model("dy_tlab", dy_tlabSchema);

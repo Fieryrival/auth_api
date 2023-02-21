@@ -13,49 +13,52 @@ const dy_wshopSchema = new mongoose.Schema({
   customId: {
     type: "Number",
   },
-  Ind_Paint_Booth: {
+  Laser_Cutter: {
+    type: "Number",
+  },
+  PaintBooth: {
     type: "Number",
   },
   Car_Lift: {
     type: "Number",
   },
-  IPC_AVEVA: {
+  Industrial_Process_Control_Unit: {
     type: "Number",
   },
-  VR_welding_Painting: {
+  VR_Welding_and_Painting: {
     type: "Number",
   },
   Auto_MRO_Cut_Sections: {
     type: "Number",
   },
-  TIGOR_EV: {
+  Battery_Electrical_Vehicle: {
     type: "Number",
   },
-  TATA_Ace: {
+  IO_Engine_Vehicle: {
     type: "Number",
   },
   EV_Kit: {
     type: "Number",
   },
-  Industrial_Robotics: {
+  Industrial_Robotics_Setup: {
     type: "Number",
   },
-  VFD: {
+  VFD_Machine: {
     type: "Number",
   },
   Plumbing_Kit: {
     type: "Number",
   },
-  CNC_Tsugami: {
+  CNC_Machine: {
     type: "Number",
   },
-  VMC_HAAS: {
+  VMC_Machine: {
     type: "Number",
   },
-  HAAS_Tools_Meters: {
+  Tools_and_Meters: {
     type: "Number",
   },
-  HAAS_Simulators: {
+  Advance_Machining_Simulators: {
     type: "Number",
   },
   deliverable: {
