@@ -3,8 +3,8 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const { authenticateToken } = require("./middlewares/middleware");
-// const cors = require("cors");
-// app.use(cors());
+const cors = require("cors");
+app.use(cors());
 const mongoose = require("mongoose");
 // const fileUpload = require("express-fileupload");
 mongoose.set("strictQuery", false);
@@ -43,7 +43,7 @@ app.use("/course/", courseRouter);
 
 // cloudinaryRouter
 const cloudinaryRouter = require("./routes/imgUp");
-app.use("cloudImg/", cloudinaryRouter);
+app.use("/cloudImg/", cloudinaryRouter);
 
 // IMPORTANT : THIS BLOCK SHOULD BE REMOVED IN PRODUCTION AND ONLY BE USED BY BACKEND PURPOSES
 // const updateAdminRouter = require("./routes/admn");
