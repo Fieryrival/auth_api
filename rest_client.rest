@@ -1,6 +1,6 @@
-GET http://localhost:3000/api/dataDashboard/?form_Id=1001
+GET http://localhost:3000/api/college/dataDashboard/?form_Id=1001
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTIzMjA5MiwiZXhwIjoxNjc1MjM1NjkyfQ.YiE71xcuNUUEPqgMYkxHz3gaR152rc2YJQcCQF7_04g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMywidXNlcm5hbWUiOiJ1c2VyMyIsImlhdCI6MTY3NzQyNzYxNCwiZXhwIjoxNjc3NTE0MDE0fQ.Kb-U047RkxzVC-Wugk33r2a9TvAdlDb3RFSX3y3tDfE
 
 ###
 GET http://localhost:3000/api/test/?formCode=1000
@@ -13,7 +13,7 @@ Content-Type: application/json
 
 {
     "username":"user3",
-    "password":"["
+    "password":"}6Z;{IR9`>ywZ>n["
 }
 
 ###

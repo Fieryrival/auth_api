@@ -108,7 +108,7 @@ router.patch(
 router.get("/lastChanges",authenticateToken, async (req, res) => {
   let tmp_changes;
   try {
-    const tmp_changes = await latestUpdate.find().sort({ changeId: -1 }).then();
+    const tmp_changes = await latestUpdate.find().sort({ changeId: -1 }).limit(20).then();
     // let year = tmp_changes[0]._doc["dateUpdate"].getFullYear();
 
     // console.log(hours + ":" + minutes);
@@ -139,7 +139,7 @@ router.get("/editableForms", authenticateToken, async (req, res) => {
     ).then();
     res.send(allowedForms);
   } catch (err) {
-    res.send({ err: "Error finding edit authorized forms" });
+    res.send({ err: "Error finding authorized forms" });
   }
 });
 
