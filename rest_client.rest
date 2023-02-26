@@ -12,8 +12,8 @@ POST http://localhost:4000/auth/login
 Content-Type: application/json
 
 {
-    "username":"master_admin",
-    "password":"h3h3pass"
+    "username":"user3",
+    "password":"["
 }
 
 ###
@@ -35,12 +35,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwid
 }
 
 ###
-GET http://localhost:3000/api/lastChanges
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTI2NzA2OCwiZXhwIjoxNjc1MjcwNjY4fQ.upoagVWQfUoXL8u3nv6WMfvsTlcgsU-8MqpyZyDMWis
+GET http://localhost:3000/api/college/lastChanges
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMywidXNlcm5hbWUiOiJ1c2VyMyIsImlhdCI6MTY3NzQyNjAyMiwiZXhwIjoxNjc3NTEyNDIyfQ.HSx006YXdyReOh8vJv-l4QkclzvzGoHwUPKW1xn_K4k
 
 ###
-GET http://localhost:3000/api/deleteAllLogs
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTI1MTk3OCwiZXhwIjoxNjc1MjU1NTc4fQ.lQ3igRt8u83ZtJK3XtUdd9NA_Wsp_UbMPQPa6et2ow8
+GET http://localhost:3000/api/college/deleteAllLogs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMywidXNlcm5hbWUiOiJ1c2VyMyIsImlhdCI6MTY3NzQyNjAyMiwiZXhwIjoxNjc3NTEyNDIyfQ.HSx006YXdyReOh8vJv-l4QkclzvzGoHwUPKW1xn_K4k
 
 ###
 # DELETE http://localhost:3000/id/160

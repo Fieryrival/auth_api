@@ -1,0 +1,3 @@
+###
+GET http://localhost:3000/api/college/getUsername
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlcm5hbWUiOiJtYXN0ZXJfYWRtaW4iLCJpYXQiOjE2NzczMTk1MzUsImV4cCI6MTY3NzQwNTkzNX0.c0FhPeTslKbdS-hiEz7MbRr82lTnhIvw5fmEBXVYaSI

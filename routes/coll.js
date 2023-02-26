@@ -25,6 +25,10 @@ const {
 } = require("../middlewares/middleware");
 // const latestUpdate = require("../models/latestUpdate");
 
+router.get("/getUsername",authenticateToken,async(req,res)=>{
+  res.status(200).json(req.username);
+})
+
 router.get("/dataDashboard", authenticateToken, getForm, async (req, res) => {
   const data = await res.tabl
     .find(
@@ -95,6 +99,7 @@ router.patch(
   authorizeUpdate,
   getCollege,
   updateStats,
+  logChanges,
   async (req, res) => {
     res.json(res.college);
   }

@@ -273,13 +273,15 @@ async function logChanges(req, res, next) {
   // for (let k in res.changes) {
   //   console.log(k, res.changes[k][2]);
   // }
+  // console.log(res.tabl.name,typeof (res.tabl));
+  // console.log(res.tabl.Object)
   const newUpdate = new latestUpdate({
     userId: req.userId,
     userName: req.username,
     changeId: changeId,
     collegeName: res.college[0]._doc["ITI_Name"],
     spec: spec,
-    formName: res.tabl,
+    formName: res.formName,
     status: res.status,
     formId: formNo,
     changes: res.changes,
