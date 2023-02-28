@@ -35,9 +35,9 @@ router.post("/updateDate", async (req, res) => {
     else endDate = new Date(endDate).toISOString();
     if (startDate === undefined) startDate = (data[0]._doc[key].startDate).toISOString();
     else startDate = new Date(startDate).toISOString();
-    const defDate = new Date("01/01/2000").toISOString();
+    const defDate = new Date('2000-01-01T00:00:00.000Z').toISOString();
     let changeStatus = 0;
-    if (endDate === defDate && startDate === defDate) changeStatus = 0;
+    if (endDate.valueOf() === defDate.valueOf() && startDate.valueOf() === defDate.valueOf()) changeStatus = 0;
     else changeStatus=1;
     // console.log(typeof(defDate),endDate,startDate);
     const filter = { customId: req.query.collegeId };

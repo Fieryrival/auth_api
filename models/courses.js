@@ -19,11 +19,11 @@ const courseSchema = new mongoose.Schema({
   Innovation_Design_Thinking: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -33,11 +33,11 @@ const courseSchema = new mongoose.Schema({
   Jr_Product_Designer: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -47,11 +47,11 @@ const courseSchema = new mongoose.Schema({
   Jr_Prod_Designer_Developer: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -61,11 +61,11 @@ const courseSchema = new mongoose.Schema({
   Auto_Electrical_Design_Technician: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -75,11 +75,11 @@ const courseSchema = new mongoose.Schema({
   Product_Verifier_Analyst: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -89,11 +89,11 @@ const courseSchema = new mongoose.Schema({
   Auto_Teardown_Benchmarking: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -103,11 +103,11 @@ const courseSchema = new mongoose.Schema({
   Advanced_Automobile: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -117,11 +117,11 @@ const courseSchema = new mongoose.Schema({
   Auto_Repair_Maintainance: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -131,11 +131,11 @@ const courseSchema = new mongoose.Schema({
   Auto_Electrical_Maintainance: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -145,11 +145,11 @@ const courseSchema = new mongoose.Schema({
   Battery_EV_Technician: {
     startDate: {
       type: Date,
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: Date,
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -159,11 +159,11 @@ const courseSchema = new mongoose.Schema({
   IOT_Application_Technician: {
     startDate: {
       type: Date,
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: Date,
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -173,11 +173,11 @@ const courseSchema = new mongoose.Schema({
   CAM_Prog_CNC_Lathe: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -187,11 +187,11 @@ const courseSchema = new mongoose.Schema({
   CAM_Programmer_CNC_Milling: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -201,11 +201,11 @@ const courseSchema = new mongoose.Schema({
   CNC_Milling_Machine_Technician: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -215,11 +215,11 @@ const courseSchema = new mongoose.Schema({
   CNC_Lathe_Machine: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -229,11 +229,11 @@ const courseSchema = new mongoose.Schema({
   Advance_CNC_Machining: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -243,11 +243,11 @@ const courseSchema = new mongoose.Schema({
   Additive_Manufacturing_Process: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: Date,
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -257,11 +257,11 @@ const courseSchema = new mongoose.Schema({
   Welding_Technician: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -271,11 +271,11 @@ const courseSchema = new mongoose.Schema({
   Advanced_Painting_Technician: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -285,11 +285,11 @@ const courseSchema = new mongoose.Schema({
   Process_Control_Automation: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -299,11 +299,11 @@ const courseSchema = new mongoose.Schema({
   Robot_Operator_Programmer_Material: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -313,11 +313,11 @@ const courseSchema = new mongoose.Schema({
   Robot_Operator_Programmer_Arc: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",
@@ -327,11 +327,11 @@ const courseSchema = new mongoose.Schema({
   Advanced_Plumbing_Technician: {
     startDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     endDate: {
       type: "Date",
-      default: "01/01/2000",
+      default: "2000-01-01T00:00:00.000Z",
     },
     changeStatus: {
       type: "Number",

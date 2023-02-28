@@ -1,18 +1,18 @@
-GET http://localhost:3000/course/byCluster?Cluster=PATNA
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlcm5hbWUiOiJtYXN0ZXJfYWRtaW4iLCJpYXQiOjE2NzY4ODc1NjksImV4cCI6MTY3Njk3Mzk2OX0.iX6EXL09xUupmiwHk9cErEFdpKJ_H1FJVpIlCvzYKDI
+GET http://localhost:3000/api/course/byCluster?Cluster=PATNA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlcm5hbWUiOiJtYXN0ZXJfYWRtaW4iLCJpYXQiOjE2Nzc2MDEzNTMsImV4cCI6MTY3NzY4Nzc1M30.YX7koMHnR58EcKlshBQKFnWTB_41CM8j6jp6yz6UeZ8
 
 ###
-POST http://localhost:3000/course/updateDate?collegeId=101
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlcm5hbWUiOiJtYXN0ZXJfYWRtaW4iLCJpYXQiOjE2NzY4ODc1NjksImV4cCI6MTY3Njk3Mzk2OX0.iX6EXL09xUupmiwHk9cErEFdpKJ_H1FJVpIlCvzYKDI
+POST http://localhost:3000/api/course/updateDate?collegeId=101
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlcm5hbWUiOiJtYXN0ZXJfYWRtaW4iLCJpYXQiOjE2Nzc2MDEzNTMsImV4cCI6MTY3NzY4Nzc1M30.YX7koMHnR58EcKlshBQKFnWTB_41CM8j6jp6yz6UeZ8
 Content-Type: application/json
 
 {
     "key":"Innovation_Design_Thinking",
-    "endDate":"02/01/2000",
-    "startDate":"01/01/2000"
+    "endDate":"2000-01-01T00:00:00.000Z",
+    "startDate":"2000-01-01T00:00:00.000Z"
 }
 
 ###
-GET http://localhost:3000/course/byCollegeId?collegeId=101
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlcm5hbWUiOiJtYXN0ZXJfYWRtaW4iLCJpYXQiOjE2NzY4ODc1NjksImV4cCI6MTY3Njk3Mzk2OX0.iX6EXL09xUupmiwHk9cErEFdpKJ_H1FJVpIlCvzYKDI
+GET http://localhost:3000/api/course/byCollegeId?collegeId=101
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlcm5hbWUiOiJtYXN0ZXJfYWRtaW4iLCJpYXQiOjE2Nzc2MDEzNTMsImV4cCI6MTY3NzY4Nzc1M30.YX7koMHnR58EcKlshBQKFnWTB_41CM8j6jp6yz6UeZ8
 
