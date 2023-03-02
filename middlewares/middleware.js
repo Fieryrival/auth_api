@@ -8,6 +8,13 @@ const in_tlab = require("../models/in_tlab");
 const in_wshop = require("../models/in_wshop");
 const Forms = require("../models/forms");
 // const Users = require("../models/users");
+const tn_cl_tlab = require("../models/tn_cl_tlab");
+const tn_cl_wshop = require("../models/tn_cl_wshop");
+const tn_dy_tlab = require("../models/tn_dy_tlab");
+const tn_dy_wshop = require("../models/tn_dy_wshop");
+const tn_in_wshop = require("../models/tn_in_wshop");
+const tn_in_tlab = require("../models/tn_in_tlab");
+const tn_courses = require("../models/tn_courses");
 const latestUpdate = require("../models/latestUpdate");
 
 async function masterAdmin(req, res, next) {
@@ -91,6 +98,9 @@ async function getReadiness(req, res, next) {
     1000: [cl_tlab, cl_wshop],
     2000: [dy_tlab, dy_wshop],
     3000: [in_tlab, in_wshop],
+    4000: [tn_cl_tlab, tn_cl_wshop],
+    5000: [tn_dy_tlab, tn_dy_wshop],
+    6000: [tn_in_tlab, tn_in_wshop],
   };
   const c1 = colls[req.query.formCode][0];
   const c2 = colls[req.query.formCode][1];
@@ -98,6 +108,9 @@ async function getReadiness(req, res, next) {
     1000: [15, 16],
     2000: [15, 16],
     3000: [15, 16],
+    4000: [15, 16],
+    5000: [15, 16],
+    6000: [15, 16],
   };
   const s1 = sizes[req.query.formCode][0];
   const s2 = sizes[req.query.formCode][1];
@@ -286,6 +299,7 @@ async function logChanges(req, res, next) {
     formId: formNo,
     changes: res.changes,
     description: desc,
+    dateUpdate: Date.now(),
   });
   await newUpdate.save();
   next();
@@ -303,6 +317,12 @@ async function getForm(req, res, next) {
     dl_wshop: dy_wshop,
     ins_tlab: in_tlab,
     ins_wshop: in_wshop,
+    tn_cl_tlab:tn_cl_tlab,
+    tn_cl_wshop: tn_cl_wshop,
+    tn_dl_tlab: tn_dy_tlab,
+    tn_dl_wshop: tn_dy_wshop,
+    tn_in_tlab: tn_in_tlab,
+    tn_in_wshop: tn_in_wshop,
   };
   const sizes = {
     cl_tlab: 15,
@@ -311,6 +331,12 @@ async function getForm(req, res, next) {
     dl_wshop: 16,
     ins_tlab: 15,
     ins_wshop: 16,
+    tn_cl_tlab: 15,
+    tn_cl_wshop: 16,
+    dl_tlab: 15,
+    tn_dl_wshop: 16,
+    tn_in_tlab: 15,
+    tn_in_wshop: 16,
   };
   res.formName = form["formName"];
   const tabl = models[form["formName"]];

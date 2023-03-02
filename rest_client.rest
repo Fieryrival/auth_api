@@ -92,12 +92,24 @@ GET http://localhost:3000/updateAdmin/forms
 
 
 ###
+GET http://localhost:3000/updateAdmin/editForm
+
+###
+POST http://localhost:3000/updateAdmin/addForm
+Content-Type: application/json
+
+{
+    "formName":"tn_courses",
+    "formId":20
+}
+
+###
 POST http://localhost:3000/updateAdmin/addAdmin
 Content-Type: application/json
 
 {
-    "formName":"cl_tlab",
-    "admins":["user1"]
+    "formName":"tn_in_wshop",
+    "admins":["user3"]
 }
 
 ###

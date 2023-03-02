@@ -8,6 +8,14 @@ const dy_tlab = require("../models/dy_tlab");
 const dy_wshop = require("../models/dy_wshop");
 const in_tlab = require("../models/in_tlab");
 const in_wshop = require("../models/in_wshop");
+const tn_cl_tlab = require("../models/tn_cl_tlab");
+const tn_cl_wshop = require("../models/tn_cl_wshop");
+const tn_dy_tlab = require("../models/tn_dy_tlab");
+const tn_dy_wshop = require("../models/tn_dy_wshop");
+const tn_in_wshop = require("../models/tn_in_wshop");
+const tn_in_tlab = require("../models/tn_in_tlab");
+const tn_courses = require("../models/tn_courses");
+
 const Forms = require("../models/forms");
 const Users = require("../models/users");
 const latestUpdate = require("../models/latestUpdate");
