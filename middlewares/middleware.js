@@ -320,8 +320,8 @@ async function getForm(req, res, next) {
     ins_wshop: in_wshop,
     tn_cl_tlab: tn_cl_tlab,
     tn_cl_wshop: tn_cl_wshop,
-    tn_dl_tlab: tn_dy_tlab,
-    tn_dl_wshop: tn_dy_wshop,
+    tn_dy_tlab: tn_dy_tlab,
+    tn_dy_wshop: tn_dy_wshop,
     tn_in_tlab: tn_in_tlab,
     tn_in_wshop: tn_in_wshop,
   };
@@ -334,8 +334,8 @@ async function getForm(req, res, next) {
     ins_wshop: 16,
     tn_cl_tlab: 15,
     tn_cl_wshop: 16,
-    tn_dl_tlab: 15,
-    tn_dl_wshop: 16,
+    tn_dy_tlab: 15,
+    tn_dy_wshop: 16,
     tn_in_tlab: 15,
     tn_in_wshop: 16,
   };
