@@ -16,6 +16,7 @@ const tn_in_wshop = require("../models/tn_in_wshop");
 const tn_in_tlab = require("../models/tn_in_tlab");
 const tn_courses = require("../models/tn_courses");
 const latestUpdate = require("../models/latestUpdate");
+const courses = require("../models/courses")
 
 async function masterAdmin(req, res, next) {
   if (req.username === "master_admin" && req.userId === 100) {
@@ -333,7 +334,7 @@ async function getForm(req, res, next) {
     ins_wshop: 16,
     tn_cl_tlab: 15,
     tn_cl_wshop: 16,
-    dl_tlab: 15,
+    tn_dl_tlab: 15,
     tn_dl_wshop: 16,
     tn_in_tlab: 15,
     tn_in_wshop: 16,
@@ -386,6 +387,22 @@ const deleteOldLogs = async (req, res, next) => {
   }
 };
 
+async function getCourseDb(req, res, next) {
+  const form = await Forms.findOne(
+    { formId: req.query.form_Id },
+    { formName: 1, formAdmins: 1 }
+  ).exec();
+  const models = {
+    courses:courses,
+    tn_courses:tn_courses,
+  };
+  res.formName = form["formName"];
+  const tabl = models[form["formName"]];
+  res.admins = form["formAdmins"];
+  res.tabl = tabl;
+  next();
+}
+
 module.exports = {
   authenticateToken,
   getCluster,
@@ -397,4 +414,5 @@ module.exports = {
   getCollege,
   logChanges,
   masterAdmin,
+  getCourseDb
 };
