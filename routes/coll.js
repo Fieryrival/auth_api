@@ -67,6 +67,7 @@ router.get(
   async (req, res) => {
     let results = {};
     res.send(res.cluster_data);
+    // res.json({Done:"Done"})
   }
 );
 

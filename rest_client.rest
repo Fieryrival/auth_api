@@ -3,8 +3,8 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMywidXNlcm5hbWUiOiJ1c2VyMyIsImlhdCI6MTY3NzQyNzYxNCwiZXhwIjoxNjc3NTE0MDE0fQ.Kb-U047RkxzVC-Wugk33r2a9TvAdlDb3RFSX3y3tDfE
 
 ###
-GET http://localhost:3000/api/test/?formCode=1000
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTIzMjA5MiwiZXhwIjoxNjc1MjM1NjkyfQ.YiE71xcuNUUEPqgMYkxHz3gaR152rc2YJQcCQF7_04g
+GET http://localhost:3000/api/college/test/?formCode=4000
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMywidXNlcm5hbWUiOiJ1c2VyMyIsImlhdCI6MTY3Nzc0OTc3MiwiZXhwIjoxNjc3ODM2MTcyfQ.iuMSGsAQsOldmRf-GItotM39IqTzIgPsuVvrlNVOZHo
 
 
 ###
@@ -12,13 +12,13 @@ POST http://localhost:4000/auth/login
 Content-Type: application/json
 
 {
-    "username":"master_admin",
-    "password":""
+    "username":"user3",
+    "password":"}["
 }
 
 ###
-GET http://localhost:3000/api/getId/?id=130&form_Id=1001
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTY3NTIzMjA5MiwiZXhwIjoxNjc1MjM1NjkyfQ.YiE71xcuNUUEPqgMYkxHz3gaR152rc2YJQcCQF7_04g
+GET http://localhost:3000/api/college/getId/?id=101&form_Id=6001
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMywidXNlcm5hbWUiOiJ1c2VyMyIsImlhdCI6MTY3Nzc0OTc3MiwiZXhwIjoxNjc3ODM2MTcyfQ.iuMSGsAQsOldmRf-GItotM39IqTzIgPsuVvrlNVOZHo
 
 ###
 GET http://localhost:3000/api/getCluster/?form_Id=1001&cluster=PATNA
@@ -26,17 +26,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwid
 
 
 ###
-PATCH http://localhost:3000/api/update_tmp/?id=130&form_Id=2001
+PATCH http://localhost:3000/api/college/update_tmp/?id=101&form_Id=6001
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlcm5hbWUiOiJtYXN0ZXJfYWRtaW4iLCJpYXQiOjE2NzY5NjQzMzgsImV4cCI6MTY3NzA1MDczOH0.r-wqAR76awZuvTGzSQ6PQ5fOhdPa0SuwYEBi064mnE8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMywidXNlcm5hbWUiOiJ1c2VyMyIsImlhdCI6MTY3Nzc0OTc3MiwiZXhwIjoxNjc3ODM2MTcyfQ.iuMSGsAQsOldmRf-GItotM39IqTzIgPsuVvrlNVOZHo
 
 {
-    "IOT_Kit": 1
+    "Server": 1
 }
 
 ###
-GET http://localhost:3000/api/college/lastChanges
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMywidXNlcm5hbWUiOiJ1c2VyMyIsImlhdCI6MTY3NzQyNjAyMiwiZXhwIjoxNjc3NTEyNDIyfQ.HSx006YXdyReOh8vJv-l4QkclzvzGoHwUPKW1xn_K4k
+GET http://localhost:3000/api/college/lastChanges?form_Id=20
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMywidXNlcm5hbWUiOiJ1c2VyMyIsImlhdCI6MTY3Nzc0OTc3MiwiZXhwIjoxNjc3ODM2MTcyfQ.iuMSGsAQsOldmRf-GItotM39IqTzIgPsuVvrlNVOZHo
 
 ###
 GET http://localhost:3000/api/college/deleteAllLogs

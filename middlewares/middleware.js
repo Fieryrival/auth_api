@@ -16,7 +16,7 @@ const tn_in_wshop = require("../models/tn_in_wshop");
 const tn_in_tlab = require("../models/tn_in_tlab");
 const tn_courses = require("../models/tn_courses");
 const latestUpdate = require("../models/latestUpdate");
-const courses = require("../models/courses")
+const courses = require("../models/courses");
 
 async function masterAdmin(req, res, next) {
   if (req.username === "master_admin" && req.userId === 100) {
@@ -318,7 +318,7 @@ async function getForm(req, res, next) {
     dl_wshop: dy_wshop,
     ins_tlab: in_tlab,
     ins_wshop: in_wshop,
-    tn_cl_tlab:tn_cl_tlab,
+    tn_cl_tlab: tn_cl_tlab,
     tn_cl_wshop: tn_cl_wshop,
     tn_dl_tlab: tn_dy_tlab,
     tn_dl_wshop: tn_dy_wshop,
@@ -349,8 +349,18 @@ async function getForm(req, res, next) {
 
 async function getUniqueCluster(req, res, next) {
   let clusters = [];
+  const tabl_Cluster = {
+    1000: cl_tlab,
+    2000: cl_tlab,
+    3000: cl_tlab,
+    4000: tn_cl_tlab,
+    5000: tn_cl_tlab,
+    6000: tn_cl_tlab,
+  };
+  // console.log(tabl_Cluster[req.query.formCode]);
+  const x = tabl_Cluster[req.query.formCode];
   try {
-    clusters = await cl_tlab.distinct("Cluster").then();
+    clusters = await x.distinct("Cluster").then();
   } catch (err) {
     res.status(500).send("Error fetching distinct Clusters");
     return;
@@ -393,8 +403,8 @@ async function getCourseDb(req, res, next) {
     { formName: 1, formAdmins: 1 }
   ).exec();
   const models = {
-    courses:courses,
-    tn_courses:tn_courses,
+    courses: courses,
+    tn_courses: tn_courses,
   };
   res.formName = form["formName"];
   const tabl = models[form["formName"]];
@@ -414,5 +424,5 @@ module.exports = {
   getCollege,
   logChanges,
   masterAdmin,
-  getCourseDb
+  getCourseDb,
 };
