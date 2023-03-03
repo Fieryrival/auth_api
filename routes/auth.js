@@ -23,7 +23,12 @@ router.post("/login", (req, res) => {
         } else if (!match) {
           res.status(401).json({ error: "Invalid username or password" });
         } else {
-          const payload = { userId: user.userId, username };
+          const payload = {
+            userId: user.userId,
+            username,
+            userState: user.state,
+          };
+          const state = user.state;
           // console.log(payload);
           const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
             algorithm: "HS256",
@@ -31,7 +36,7 @@ router.post("/login", (req, res) => {
           });
           // console.log(process.env.ACCESS_TOKEN_SECRET)
           // console.log(user.userId)
-          res.json({ message: "Login successful", token });
+          res.json({ message: "Login successful", token, state });
         }
       });
     }

@@ -33,9 +33,9 @@ const {
 } = require("../middlewares/middleware");
 // const latestUpdate = require("../models/latestUpdate");
 
-router.get("/getUsername",authenticateToken,async(req,res)=>{
+router.get("/getUsername", authenticateToken, async (req, res) => {
   res.status(200).json(req.username);
-})
+});
 
 router.get("/dataDashboard", authenticateToken, getForm, async (req, res) => {
   const data = await res.tabl
@@ -114,10 +114,14 @@ router.patch(
   }
 );
 
-router.get("/lastChanges",authenticateToken, async (req, res) => {
+router.get("/lastChanges", authenticateToken, async (req, res) => {
   let tmp_changes;
   try {
-    const tmp_changes = await latestUpdate.find().sort({ changeId: -1 }).limit(20).then();
+    const tmp_changes = await latestUpdate
+      .find({ stateName: req.authState })
+      .sort({ changeId: -1 })
+      .limit(20)
+      .then();
     // let year = tmp_changes[0]._doc["dateUpdate"].getFullYear();
 
     // console.log(hours + ":" + minutes);
@@ -127,7 +131,7 @@ router.get("/lastChanges",authenticateToken, async (req, res) => {
   }
 });
 
-router.get("/deleteAllLogs",authenticateToken, async (req, res) => {
+router.get("/deleteAllLogs", authenticateToken, async (req, res) => {
   try {
     const deletedLogs = await latestUpdate.deleteMany().then();
     res.send(deletedLogs);

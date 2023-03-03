@@ -15,6 +15,7 @@ router.post(
       const userId = req.userId;
       const userName = req.username;
       const siteName = req.body.siteName;
+      const userState = req.authState;
       const caption = req.body.caption;
       let countDocs = await upload_datas.countDocuments().then();
       //   const fileId = 10 + countDocs;
@@ -37,6 +38,7 @@ router.post(
         siteName: siteName,
         caption: caption,
         fileId: fileId,
+        stateName: userState,
         fileName: result.public_id,
         fileUrl: result.secure_url,
       });
@@ -50,8 +52,12 @@ router.post(
 
 router.get("/allImages", authenticateToken, async (req, res) => {
   let imgData;
+  const userState = req.authState;
   try {
-    imgData = await upload_datas.find({}, {}).sort({ fileId: -1 }).then();
+    imgData = await upload_datas
+      .find({ stateName: req.query.stateName }, {})
+      .sort({ fileId: -1 })
+      .then();
     res.status(200).send(imgData);
   } catch (err) {
     res.status(500).send({ err: "error getting imgData" });
@@ -60,9 +66,10 @@ router.get("/allImages", authenticateToken, async (req, res) => {
 
 router.get("/clusterImg", authenticateToken, async (req, res) => {
   let imgData;
+  // let stat = req.state;
   try {
     imgData = await upload_datas
-      .find({ siteName: req.query.cluster })
+      .find({ siteName: req.query.cluster, stateName: req.authState })
       .sort({ fileId: -1 })
       .then();
     res.status(200).send(imgData);

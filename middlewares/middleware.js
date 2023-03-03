@@ -57,6 +57,7 @@ const authenticateToken = async (req, res, next) => {
       // console.log(user)
       req.username = user.username;
       req.userId = user.userId;
+      req.authState = user.userState;
       next();
     }
   );
@@ -301,6 +302,7 @@ async function logChanges(req, res, next) {
     changes: res.changes,
     description: desc,
     dateUpdate: Date.now(),
+    stateName: req.authState,
   });
   await newUpdate.save();
   next();
@@ -410,6 +412,11 @@ async function getCourseDb(req, res, next) {
   const tabl = models[form["formName"]];
   res.admins = form["formAdmins"];
   res.tabl = tabl;
+  next();
+}
+
+async function authenticateState(req, res, next) {
+
   next();
 }
 

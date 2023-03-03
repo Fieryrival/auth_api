@@ -2,12 +2,13 @@ const mongoose = require("mongoose");
 
 const uploadSchema = new mongoose.Schema({
   userId: Number,
-  userName:String,
-  siteName:String,
+  userName: String,
+  siteName: String,
   caption: String,
   fileId: Number,
   fileName: String,
-  fileUrl:String,
+  stateName: String,
+  fileUrl: String,
   createdAt: { type: Date, default: Date.now() },
   timeUpdate: {
     type: String,
