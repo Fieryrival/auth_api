@@ -12,13 +12,13 @@ POST http://localhost:4000/auth/login
 Content-Type: application/json
 
 {
-    "username":"reg_user_2",
-    "password":"gV29306"
+    "username":"civ_admin_1",
+    "password":"H)s"
 }
 
 ###
-GET http://localhost:3000/api/college/getId/?id=101&form_Id=6001
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMywidXNlcm5hbWUiOiJ1c2VyMyIsImlhdCI6MTY3Nzc0OTc3MiwiZXhwIjoxNjc3ODM2MTcyfQ.iuMSGsAQsOldmRf-GItotM39IqTzIgPsuVvrlNVOZHo
+GET http://localhost:3000/api/college/getId/?id=101&form_Id=4001
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwMSwidXNlcm5hbWUiOiJjaXZfYWRtaW5fMiIsInVzZXJTdGF0ZSI6IlRhbWlsX05hZHUiLCJpYXQiOjE2Nzc4NjkzMjUsImV4cCI6MTY3Nzk1NTcyNX0.QINHkgPKxQzX0HUUHno3sdk8sYttXgjB-W3El8_Bhvc
 
 ###
 GET http://localhost:3000/api/getCluster/?form_Id=1001&cluster=PATNA
@@ -26,12 +26,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwid
 
 
 ###
-PATCH http://localhost:3000/api/college/update_tmp/?id=101&form_Id=6001
+PATCH http://localhost:3000/api/college/update_tmp/?id=101&form_Id=5001
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMywidXNlcm5hbWUiOiJ1c2VyMyIsImlhdCI6MTY3Nzc0OTc3MiwiZXhwIjoxNjc3ODM2MTcyfQ.iuMSGsAQsOldmRf-GItotM39IqTzIgPsuVvrlNVOZHo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwMSwidXNlcm5hbWUiOiJjaXZfYWRtaW5fMiIsInVzZXJTdGF0ZSI6IlRhbWlsX05hZHUiLCJpYXQiOjE2Nzc4NjkzMjUsImV4cCI6MTY3Nzk1NTcyNX0.QINHkgPKxQzX0HUUHno3sdk8sYttXgjB-W3El8_Bhvc
 
 {
-    "Server": 1
+    "AC": 1
 }
 
 ###
@@ -108,8 +108,8 @@ POST http://localhost:3000/updateAdmin/addAdmin
 Content-Type: application/json
 
 {
-    "formName":"tn_in_wshop",
-    "admins":["user3"]
+    "formName":"tn_in_tlab",
+    "admins":["ins_admin_2"]
 }
 
 ###

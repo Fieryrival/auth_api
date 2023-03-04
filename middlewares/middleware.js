@@ -416,9 +416,29 @@ async function getCourseDb(req, res, next) {
 }
 
 async function authenticateState(req, res, next) {
-
   next();
 }
+
+const checkAndUpdateChanges = async (req, res, next) => {
+  try {
+    const stateChangesCount = await latestUpdate.countDocuments({
+      stateName: req.authState,
+    });
+
+    if (stateChangesCount > 20) {
+      const oldestChange = await latestUpdate
+        .findOne({ stateName: req.authState })
+        .sort({ changeId: 1 })
+        .limit(1);
+
+      await latestUpdate.findByIdAndDelete(oldestChange._id);
+    }
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   authenticateToken,
@@ -432,4 +452,5 @@ module.exports = {
   logChanges,
   masterAdmin,
   getCourseDb,
+  checkAndUpdateChanges,
 };
