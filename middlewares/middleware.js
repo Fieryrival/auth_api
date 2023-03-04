@@ -275,6 +275,8 @@ async function updateStats(req, res, next) {
 }
 
 async function logChanges(req, res, next) {
+  const statename = req.authState;
+  if (statename === "ALL") next();
   let excludedKeys = ["__v", "_id"];
   // console.log(res.changes);
   const changeId = (await latestUpdate.countDocuments().then()) + 1;

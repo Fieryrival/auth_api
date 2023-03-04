@@ -110,6 +110,7 @@ router.patch(
   getCollege,
   updateStats,
   logChanges,
+  checkAndUpdateChanges,
   async (req, res) => {
     res.json(res.college);
   }
