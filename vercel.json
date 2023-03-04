@@ -6,13 +6,13 @@
         "use": "@vercel/node"
       },
       {
-        "src": "auth.js",
+        "src": "authServer.js",
         "use": "@vercel/node"
       }
     ],
     "routes": [
       { "src": "/api/(.*)", "dest": "/app.js" },
-      { "src": "/auth/(.*)", "dest": "/auth.js" }
+      { "src": "/auth/(.*)", "dest": "/authServer.js" }
     ]
   }
   
