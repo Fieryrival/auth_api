@@ -276,38 +276,44 @@ async function updateStats(req, res, next) {
 
 async function logChanges(req, res, next) {
   const statename = req.authState;
-  if (statename === "ALL") next();
-  let excludedKeys = ["__v", "_id"];
-  // console.log(res.changes);
-  const changeId = (await latestUpdate.countDocuments().then()) + 1;
-  let spec;
-  let formNo = req.query.form_Id;
-  if (formNo % 2 === 0) spec = "workshop";
-  else spec = "techlab";
-  let desc;
-  if (res.changes["completed"] === 1) desc = "this got completed";
-  // console.log(res.changes);
-  // for (let k in res.changes) {
-  //   console.log(k, res.changes[k][2]);
-  // }
-  // console.log(res.tabl.name,typeof (res.tabl));
-  // console.log(res.tabl.Object)
-  const newUpdate = new latestUpdate({
-    userId: req.userId,
-    userName: req.username,
-    changeId: changeId,
-    collegeName: res.college[0]._doc["ITI_Name"],
-    spec: spec,
-    formName: res.formName,
-    status: res.status,
-    formId: formNo,
-    changes: res.changes,
-    description: desc,
-    dateUpdate: Date.now(),
-    stateName: req.authState,
-  });
-  await newUpdate.save();
-  next();
+  if (statename === "ALL"){
+    // console.log("correct");
+    next();
+  } else{
+    // console.log(statename);
+    let excludedKeys = ["__v", "_id"];
+    // console.log(res.changes);
+    const changeId = (await latestUpdate.countDocuments().then()) + 1;
+    let spec;
+    let formNo = req.query.form_Id;
+    if (formNo % 2 === 0) spec = "workshop";
+    else spec = "techlab";
+    let desc;
+    if (res.changes["completed"] === 1) desc = "this got completed";
+    // console.log(res.changes);
+    // for (let k in res.changes) {
+    //   console.log(k, res.changes[k][2]);
+    // }
+    // console.log(res.tabl.name,typeof (res.tabl));
+    // console.log(res.tabl.Object)
+    const newUpdate = new latestUpdate({
+      userId: req.userId,
+      userName: req.username,
+      changeId: changeId,
+      collegeName: res.college[0]._doc["ITI_Name"],
+      spec: spec,
+      formName: res.formName,
+      status: res.status,
+      formId: formNo,
+      changes: res.changes,
+      description: desc,
+      dateUpdate: Date.now(),
+      stateName: req.authState,
+    });
+    await newUpdate.save();
+    next();
+  }
+  
 }
 
 async function getForm(req, res, next) {
