@@ -38,6 +38,7 @@ router.post(
         siteName: siteName,
         caption: caption,
         fileId: fileId,
+        createdAt: Date.now(),
         stateName: userState,
         fileName: result.public_id,
         fileUrl: result.secure_url,
