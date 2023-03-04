@@ -9,6 +9,7 @@ const logUpdate = new mongoose.Schema({
   formName: String,
   status: String,
   formId: Number,
+  stateName: String,
   changes: { type: Object },
   description: String,
   dateUpdate: { type: Date, default: new Date() },

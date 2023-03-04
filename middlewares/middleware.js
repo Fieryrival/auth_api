@@ -8,7 +8,15 @@ const in_tlab = require("../models/in_tlab");
 const in_wshop = require("../models/in_wshop");
 const Forms = require("../models/forms");
 // const Users = require("../models/users");
+const tn_cl_tlab = require("../models/tn_cl_tlab");
+const tn_cl_wshop = require("../models/tn_cl_wshop");
+const tn_dy_tlab = require("../models/tn_dy_tlab");
+const tn_dy_wshop = require("../models/tn_dy_wshop");
+const tn_in_wshop = require("../models/tn_in_wshop");
+const tn_in_tlab = require("../models/tn_in_tlab");
+const tn_courses = require("../models/tn_courses");
 const latestUpdate = require("../models/latestUpdate");
+const courses = require("../models/courses");
 
 async function masterAdmin(req, res, next) {
   if (req.username === "master_admin" && req.userId === 100) {
@@ -49,6 +57,7 @@ const authenticateToken = async (req, res, next) => {
       // console.log(user)
       req.username = user.username;
       req.userId = user.userId;
+      req.authState = user.userState;
       next();
     }
   );
@@ -91,6 +100,9 @@ async function getReadiness(req, res, next) {
     1000: [cl_tlab, cl_wshop],
     2000: [dy_tlab, dy_wshop],
     3000: [in_tlab, in_wshop],
+    4000: [tn_cl_tlab, tn_cl_wshop],
+    5000: [tn_dy_tlab, tn_dy_wshop],
+    6000: [tn_in_tlab, tn_in_wshop],
   };
   const c1 = colls[req.query.formCode][0];
   const c2 = colls[req.query.formCode][1];
@@ -98,6 +110,9 @@ async function getReadiness(req, res, next) {
     1000: [15, 16],
     2000: [15, 16],
     3000: [15, 16],
+    4000: [15, 16],
+    5000: [15, 16],
+    6000: [15, 16],
   };
   const s1 = sizes[req.query.formCode][0];
   const s2 = sizes[req.query.formCode][1];
@@ -273,17 +288,21 @@ async function logChanges(req, res, next) {
   // for (let k in res.changes) {
   //   console.log(k, res.changes[k][2]);
   // }
+  // console.log(res.tabl.name,typeof (res.tabl));
+  // console.log(res.tabl.Object)
   const newUpdate = new latestUpdate({
     userId: req.userId,
     userName: req.username,
     changeId: changeId,
     collegeName: res.college[0]._doc["ITI_Name"],
     spec: spec,
-    formName: res.tabl,
+    formName: res.formName,
     status: res.status,
     formId: formNo,
     changes: res.changes,
     description: desc,
+    dateUpdate: Date.now(),
+    stateName: req.authState,
   });
   await newUpdate.save();
   next();
@@ -301,6 +320,12 @@ async function getForm(req, res, next) {
     dl_wshop: dy_wshop,
     ins_tlab: in_tlab,
     ins_wshop: in_wshop,
+    tn_cl_tlab: tn_cl_tlab,
+    tn_cl_wshop: tn_cl_wshop,
+    tn_dy_tlab: tn_dy_tlab,
+    tn_dy_wshop: tn_dy_wshop,
+    tn_in_tlab: tn_in_tlab,
+    tn_in_wshop: tn_in_wshop,
   };
   const sizes = {
     cl_tlab: 15,
@@ -309,6 +334,12 @@ async function getForm(req, res, next) {
     dl_wshop: 16,
     ins_tlab: 15,
     ins_wshop: 16,
+    tn_cl_tlab: 15,
+    tn_cl_wshop: 16,
+    tn_dy_tlab: 15,
+    tn_dy_wshop: 16,
+    tn_in_tlab: 15,
+    tn_in_wshop: 16,
   };
   res.formName = form["formName"];
   const tabl = models[form["formName"]];
@@ -320,8 +351,18 @@ async function getForm(req, res, next) {
 
 async function getUniqueCluster(req, res, next) {
   let clusters = [];
+  const tabl_Cluster = {
+    1000: cl_tlab,
+    2000: cl_tlab,
+    3000: cl_tlab,
+    4000: tn_cl_tlab,
+    5000: tn_cl_tlab,
+    6000: tn_cl_tlab,
+  };
+  // console.log(tabl_Cluster[req.query.formCode]);
+  const x = tabl_Cluster[req.query.formCode];
   try {
-    clusters = await cl_tlab.distinct("Cluster").then();
+    clusters = await x.distinct("Cluster").then();
   } catch (err) {
     res.status(500).send("Error fetching distinct Clusters");
     return;
@@ -358,6 +399,47 @@ const deleteOldLogs = async (req, res, next) => {
   }
 };
 
+async function getCourseDb(req, res, next) {
+  const form = await Forms.findOne(
+    { formId: req.query.form_Id },
+    { formName: 1, formAdmins: 1 }
+  ).exec();
+  const models = {
+    courses: courses,
+    tn_courses: tn_courses,
+  };
+  res.formName = form["formName"];
+  const tabl = models[form["formName"]];
+  res.admins = form["formAdmins"];
+  res.tabl = tabl;
+  next();
+}
+
+async function authenticateState(req, res, next) {
+  next();
+}
+
+const checkAndUpdateChanges = async (req, res, next) => {
+  try {
+    const stateChangesCount = await latestUpdate.countDocuments({
+      stateName: req.authState,
+    });
+
+    if (stateChangesCount > 20) {
+      const oldestChange = await latestUpdate
+        .findOne({ stateName: req.authState })
+        .sort({ changeId: 1 })
+        .limit(1);
+
+      await latestUpdate.findByIdAndDelete(oldestChange._id);
+    }
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   authenticateToken,
   getCluster,
@@ -369,4 +451,6 @@ module.exports = {
   getCollege,
   logChanges,
   masterAdmin,
+  getCourseDb,
+  checkAndUpdateChanges,
 };

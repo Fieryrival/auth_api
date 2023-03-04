@@ -8,6 +8,14 @@ const dy_tlab = require("../models/dy_tlab");
 const dy_wshop = require("../models/dy_wshop");
 const in_tlab = require("../models/in_tlab");
 const in_wshop = require("../models/in_wshop");
+const tn_cl_tlab = require("../models/tn_cl_tlab");
+const tn_cl_wshop = require("../models/tn_cl_wshop");
+const tn_dy_tlab = require("../models/tn_dy_tlab");
+const tn_dy_wshop = require("../models/tn_dy_wshop");
+const tn_in_wshop = require("../models/tn_in_wshop");
+const tn_in_tlab = require("../models/tn_in_tlab");
+const tn_courses = require("../models/tn_courses");
+
 const Forms = require("../models/forms");
 const Users = require("../models/users");
 const latestUpdate = require("../models/latestUpdate");
@@ -22,8 +30,13 @@ const {
   getUniqueCluster,
   getCollege,
   logChanges,
+  checkAndUpdateChanges,
 } = require("../middlewares/middleware");
 // const latestUpdate = require("../models/latestUpdate");
+
+router.get("/getUsername", authenticateToken, async (req, res) => {
+  res.status(200).json(req.username);
+});
 
 router.get("/dataDashboard", authenticateToken, getForm, async (req, res) => {
   const data = await res.tabl
@@ -55,6 +68,7 @@ router.get(
   async (req, res) => {
     let results = {};
     res.send(res.cluster_data);
+    // res.json({Done:"Done"})
   }
 );
 
@@ -95,15 +109,20 @@ router.patch(
   authorizeUpdate,
   getCollege,
   updateStats,
+  logChanges,
   async (req, res) => {
     res.json(res.college);
   }
 );
 
-router.get("/lastChanges",authenticateToken, async (req, res) => {
+router.get("/lastChanges", authenticateToken, async (req, res) => {
   let tmp_changes;
   try {
-    const tmp_changes = await latestUpdate.find().sort({ changeId: -1 }).then();
+    const tmp_changes = await latestUpdate
+      .find({ stateName: req.authState })
+      .sort({ changeId: -1 })
+      .limit(20)
+      .then();
     // let year = tmp_changes[0]._doc["dateUpdate"].getFullYear();
 
     // console.log(hours + ":" + minutes);
@@ -113,7 +132,7 @@ router.get("/lastChanges",authenticateToken, async (req, res) => {
   }
 });
 
-router.get("/deleteAllLogs",authenticateToken, async (req, res) => {
+router.get("/deleteAllLogs", authenticateToken, async (req, res) => {
   try {
     const deletedLogs = await latestUpdate.deleteMany().then();
     res.send(deletedLogs);
@@ -134,7 +153,7 @@ router.get("/editableForms", authenticateToken, async (req, res) => {
     ).then();
     res.send(allowedForms);
   } catch (err) {
-    res.send({ err: "Error finding edit authorized forms" });
+    res.send({ err: "Error finding authorized forms" });
   }
 });
 

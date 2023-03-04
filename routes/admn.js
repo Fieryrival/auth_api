@@ -55,6 +55,21 @@ router.get("/forms", async (req, res) => {
   }
 });
 
+router.post("/addForm", async (req, res) => {
+  const { formName, formId } = req.body;
+
+  let newForm = new Forms({ formName: formName, formId: formId });
+  await newForm.save();
+  res.json(newForm);
+});
+
+router.get("/editForm", async (req, res) => {
+  let formToEdit = await Forms.findOne({ formName: "tn_in_wshop" }).then();
+  formToEdit["formId"] = 6002;
+  await formToEdit.save();
+  res.json(formToEdit);
+});
+
 // one function to add a particular user to that form
 router.post("/addAdmin", async (req, res) => {
   const formToEdit = await Forms.findOne({
