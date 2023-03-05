@@ -19,7 +19,9 @@ const latestUpdate = require("../models/latestUpdate");
 const courses = require("../models/courses");
 
 async function masterAdmin(req, res, next) {
-  if (req.username === "master_admin" && req.userId === 100) {
+  let checkAdmin = req.userId % 100;
+  // console.log(checkAdmin);
+  if (req.userId === 100 || checkAdmin === 99) {
     next();
   } else {
     return res.sendStatus(403);
@@ -72,7 +74,8 @@ async function authorizeUpdate(req, res, next) {
       break;
     }
   }
-  if (req.userId === 100 && req.username === "master_admin") authorized = true;
+  let checkAdmin = req.userId % 100;
+  if (req.userId === 100 || checkAdmin === 99) authorized = true;
   if (authorized) {
     next();
   } else {
@@ -276,10 +279,10 @@ async function updateStats(req, res, next) {
 
 async function logChanges(req, res, next) {
   const statename = req.authState;
-  if (statename === "ALL"){
+  if (statename === "ALL") {
     // console.log("correct");
     next();
-  } else{
+  } else {
     // console.log(statename);
     let excludedKeys = ["__v", "_id"];
     // console.log(res.changes);
@@ -313,7 +316,6 @@ async function logChanges(req, res, next) {
     await newUpdate.save();
     next();
   }
-  
 }
 
 async function getForm(req, res, next) {

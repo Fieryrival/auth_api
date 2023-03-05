@@ -30,6 +30,7 @@ const {
   getUniqueCluster,
   getCollege,
   logChanges,
+  masterAdmin,
   checkAndUpdateChanges,
 } = require("../middlewares/middleware");
 // const latestUpdate = require("../models/latestUpdate");
