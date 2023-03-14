@@ -34,7 +34,7 @@ const dy_wshopSchema = new mongoose.Schema({
   Battery_Electrical_Vehicle: {
     type: "Number",
   },
-  IO_Engine_Vehicle: {
+  IC_Engine_Vehicle: {
     type: "Number",
   },
   EV_Kit: {
