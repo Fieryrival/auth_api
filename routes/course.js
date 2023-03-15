@@ -4,6 +4,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const courses = require("../models/courses");
 const tn_courses = require("../models/tn_courses")
+const as_courses = require("../models/as_courses")
 const Forms = require("../models/forms");
 
 router.get("/byCluster",getCourseDb, async (req, res) => {

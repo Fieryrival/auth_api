@@ -99,8 +99,9 @@ POST http://localhost:3000/updateAdmin/addForm
 Content-Type: application/json
 
 {
-    "formName":"tn_courses",
-    "formId":20
+    "formName":"as_in_wshop",
+    "formId":9002,
+    "formAdmins":[303]
 }
 
 ###

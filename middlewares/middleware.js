@@ -15,6 +15,15 @@ const tn_dy_wshop = require("../models/tn_dy_wshop");
 const tn_in_wshop = require("../models/tn_in_wshop");
 const tn_in_tlab = require("../models/tn_in_tlab");
 const tn_courses = require("../models/tn_courses");
+
+const as_cl_tlab = require("../models/as_cl_tlab");
+const as_cl_wshop = require("../models/as_cl_wshop");
+const as_dy_tlab = require("../models/as_dy_tlab");
+const as_dy_wshop = require("../models/as_dy_wshop");
+const as_in_wshop = require("../models/as_in_wshop");
+const as_in_tlab = require("../models/as_in_tlab");
+const as_courses = require("../models/as_courses");
+
 const latestUpdate = require("../models/latestUpdate");
 const courses = require("../models/courses");
 
@@ -106,6 +115,9 @@ async function getReadiness(req, res, next) {
     4000: [tn_cl_tlab, tn_cl_wshop],
     5000: [tn_dy_tlab, tn_dy_wshop],
     6000: [tn_in_tlab, tn_in_wshop],
+    7000: [as_cl_tlab, as_cl_wshop],
+    8000: [as_dy_tlab, as_dy_wshop],
+    9000: [as_in_tlab, as_in_wshop],
   };
   const c1 = colls[req.query.formCode][0];
   const c2 = colls[req.query.formCode][1];
@@ -116,6 +128,9 @@ async function getReadiness(req, res, next) {
     4000: [15, 16],
     5000: [15, 16],
     6000: [15, 16],
+    7000: [15, 16],
+    8000: [15, 16],
+    9000: [15, 16],
   };
   const s1 = sizes[req.query.formCode][0];
   const s2 = sizes[req.query.formCode][1];
@@ -299,11 +314,14 @@ async function logChanges(req, res, next) {
     // }
     // console.log(res.tabl.name,typeof (res.tabl));
     // console.log(res.tabl.Object)
+    const insName =
+      res.college[0]._doc["ITI_Name"] || res.college[0]._doc["Institute_Name"];
     const newUpdate = new latestUpdate({
       userId: req.userId,
       userName: req.username,
       changeId: changeId,
-      collegeName: res.college[0]._doc["ITI_Name"],
+      // collegeName: res.college[0]._doc["ITI_Name"],
+      collegeName: insName,
       spec: spec,
       formName: res.formName,
       status: res.status,
@@ -336,6 +354,12 @@ async function getForm(req, res, next) {
     tn_dy_wshop: tn_dy_wshop,
     tn_in_tlab: tn_in_tlab,
     tn_in_wshop: tn_in_wshop,
+    as_cl_tlab: as_cl_tlab,
+    as_cl_wshop: as_cl_wshop,
+    as_dy_tlab: as_dy_tlab,
+    as_dy_wshop: as_dy_wshop,
+    as_in_tlab: as_in_tlab,
+    as_in_wshop: as_in_wshop,
   };
   const sizes = {
     cl_tlab: 15,
@@ -350,6 +374,12 @@ async function getForm(req, res, next) {
     tn_dy_wshop: 16,
     tn_in_tlab: 15,
     tn_in_wshop: 16,
+    as_cl_tlab: 15,
+    as_cl_wshop: 16,
+    as_dy_tlab: 15,
+    as_dy_wshop: 16,
+    as_in_tlab: 15,
+    as_in_wshop: 16,
   };
   res.formName = form["formName"];
   const tabl = models[form["formName"]];
@@ -368,6 +398,9 @@ async function getUniqueCluster(req, res, next) {
     4000: tn_cl_tlab,
     5000: tn_cl_tlab,
     6000: tn_cl_tlab,
+    7000: as_cl_tlab,
+    8000: as_cl_tlab,
+    9000: as_cl_tlab,
   };
   // console.log(tabl_Cluster[req.query.formCode]);
   const x = tabl_Cluster[req.query.formCode];

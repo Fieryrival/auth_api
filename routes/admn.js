@@ -56,9 +56,13 @@ router.get("/forms", async (req, res) => {
 });
 
 router.post("/addForm", async (req, res) => {
-  const { formName, formId } = req.body;
+  const { formName, formId, formAdmins } = req.body;
 
-  let newForm = new Forms({ formName: formName, formId: formId });
+  let newForm = new Forms({
+    formName: formName,
+    formId: formId,
+    formAdmins: formAdmins,
+  });
   await newForm.save();
   res.json(newForm);
 });
