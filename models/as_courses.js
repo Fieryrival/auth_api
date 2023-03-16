@@ -7,7 +7,7 @@ const courseSchema = new mongoose.Schema({
   Institute_Type: {
     type: "String",
   },
-  Institute_Name: {
+  ITI_Name: {
     type: "String",
   },
   customId: {

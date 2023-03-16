@@ -4,7 +4,7 @@ const dy_wshopSchema = new mongoose.Schema({
   Institute_Type: {
     type: "String",
   },
-  Institute_Name: {
+  ITI_Name: {
     type: "String",
   },
   Cluster: {
