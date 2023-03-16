@@ -3,11 +3,11 @@ const { default: mongoose, Model } = require("mongoose");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const courses = require("../models/courses");
-const tn_courses = require("../models/tn_courses")
-const as_courses = require("../models/as_courses")
+const tn_courses = require("../models/tn_courses");
+const as_courses = require("../models/as_courses");
 const Forms = require("../models/forms");
 
-router.get("/byCluster",getCourseDb, async (req, res) => {
+router.get("/byCluster", getCourseDb, async (req, res) => {
   try {
     const data = await res.tabl.find({ Cluster: req.query.Cluster }, {}).then();
     res.json(data);
@@ -16,7 +16,7 @@ router.get("/byCluster",getCourseDb, async (req, res) => {
   }
 });
 
-router.get("/byCollegeId",getCourseDb ,async (req, res) => {
+router.get("/byCollegeId", getCourseDb, async (req, res) => {
   try {
     const data = await res.tabl
       .find({ customId: req.query.collegeId }, {})
@@ -27,7 +27,7 @@ router.get("/byCollegeId",getCourseDb ,async (req, res) => {
   }
 });
 
-router.post("/updateDate",getCourseDb, async (req, res) => {
+router.post("/updateDate", getCourseDb, async (req, res) => {
   let data;
   try {
     let startDate = req.body.startDate;
@@ -77,8 +77,9 @@ async function getCourseDb(req, res, next) {
     { formName: 1, formAdmins: 1 }
   ).exec();
   const models = {
-    courses:courses,
-    tn_courses:tn_courses,
+    courses: courses,
+    tn_courses: tn_courses,
+    as_courses: as_courses,
   };
   res.formName = form["formName"];
   const tabl = models[form["formName"]];

@@ -1,10 +1,10 @@
-GET http://localhost:3000/api/college/dataDashboard/?form_Id=1001
+GET http://localhost:3000/api/college/dataDashboard/?form_Id=7002
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMywidXNlcm5hbWUiOiJ1c2VyMyIsImlhdCI6MTY3NzQyNzYxNCwiZXhwIjoxNjc3NTE0MDE0fQ.Kb-U047RkxzVC-Wugk33r2a9TvAdlDb3RFSX3y3tDfE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwNCwidXNlcm5hbWUiOiJyZWdfdXNlcl8zIiwidXNlclN0YXRlIjoiQXNzYW0iLCJpYXQiOjE2Nzg5Nzk1MTAsImV4cCI6MTY3OTA2NTkxMH0.EDQho1S7cVZQXSgP6i2uWxzFvii83f_ZklkYpGHWX9Q
 
 ###
-GET http://localhost:3000/api/college/test/?formCode=4000
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMywidXNlcm5hbWUiOiJ1c2VyMyIsImlhdCI6MTY3Nzc0OTc3MiwiZXhwIjoxNjc3ODM2MTcyfQ.iuMSGsAQsOldmRf-GItotM39IqTzIgPsuVvrlNVOZHo
+GET http://localhost:3000/api/college/test/?formCode=7000
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwNCwidXNlcm5hbWUiOiJyZWdfdXNlcl8zIiwidXNlclN0YXRlIjoiQXNzYW0iLCJpYXQiOjE2Nzg5Nzk1MTAsImV4cCI6MTY3OTA2NTkxMH0.EDQho1S7cVZQXSgP6i2uWxzFvii83f_ZklkYpGHWX9Q
 
 
 ###
@@ -12,13 +12,13 @@ POST http://localhost:4000/auth/login
 Content-Type: application/json
 
 {
-    "username":"civ_admin_1",
-    "password":"H)s"
+    "username":"reg_user_3",
+    "password":"9Kn24oA%RXf&!OjJ"
 }
 
 ###
-GET http://localhost:3000/api/college/getId/?id=101&form_Id=4001
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwMSwidXNlcm5hbWUiOiJjaXZfYWRtaW5fMiIsInVzZXJTdGF0ZSI6IlRhbWlsX05hZHUiLCJpYXQiOjE2Nzc4NjkzMjUsImV4cCI6MTY3Nzk1NTcyNX0.QINHkgPKxQzX0HUUHno3sdk8sYttXgjB-W3El8_Bhvc
+GET http://localhost:3000/api/college/getId/?id=101&form_Id=9002
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwNCwidXNlcm5hbWUiOiJyZWdfdXNlcl8zIiwidXNlclN0YXRlIjoiQXNzYW0iLCJpYXQiOjE2Nzg5Nzg2NzcsImV4cCI6MTY3OTA2NTA3N30.xfm5M3PaO57IQmStj70qnBwKKGuSgZ5970VtwReZvzE
 
 ###
 GET http://localhost:3000/api/getCluster/?form_Id=1001&cluster=PATNA

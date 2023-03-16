@@ -1,5 +1,5 @@
-GET http://localhost:3000/api/course/byCluster?Cluster=CHENNAI&form_Id=20
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMywidXNlcm5hbWUiOiJ1c2VyMyIsImlhdCI6MTY3Nzc0OTc3MiwiZXhwIjoxNjc3ODM2MTcyfQ.iuMSGsAQsOldmRf-GItotM39IqTzIgPsuVvrlNVOZHo
+GET http://localhost:3000/api/course/byCluster?Cluster=Cluster1ITI&form_Id=30
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwNCwidXNlcm5hbWUiOiJyZWdfdXNlcl8zIiwidXNlclN0YXRlIjoiQXNzYW0iLCJpYXQiOjE2Nzg5Nzk1MTAsImV4cCI6MTY3OTA2NTkxMH0.EDQho1S7cVZQXSgP6i2uWxzFvii83f_ZklkYpGHWX9Q
 
 ###
 POST http://localhost:3000/api/course/updateDate?collegeId=101&form_Id=20
@@ -13,6 +13,6 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/course/byCollegeId?collegeId=171&form_Id=20
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMywidXNlcm5hbWUiOiJ1c2VyMyIsImlhdCI6MTY3Nzc0OTc3MiwiZXhwIjoxNjc3ODM2MTcyfQ.iuMSGsAQsOldmRf-GItotM39IqTzIgPsuVvrlNVOZHo
+GET http://localhost:3000/api/course/byCollegeId?collegeId=101&form_Id=30
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwNCwidXNlcm5hbWUiOiJyZWdfdXNlcl8zIiwidXNlclN0YXRlIjoiQXNzYW0iLCJpYXQiOjE2Nzg5Nzk1MTAsImV4cCI6MTY3OTA2NTkxMH0.EDQho1S7cVZQXSgP6i2uWxzFvii83f_ZklkYpGHWX9Q
 
